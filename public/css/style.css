@@ -1,0 +1,65 @@
+ /* label color */
+ 
+ .input-field label {
+     color: rgb(255, 255, 255) !important;
+ }
+ /* label focus color */
+ 
+ .input-field input[type=password]:focus+label {
+     color: rgb(255, 251, 251) !important;
+ }
+ /* label underline focus color */
+ 
+ .input-field input[type=password]:focus {
+     border-bottom: 1px solid rgb(252, 250, 250) !important;
+     box-shadow: 0 1px 0 0 rgb(248, 245, 245) !important;
+ }
+ /* valid color */
+ 
+ .input-field input[type=password].valid {
+     border-bottom: 1px solid rgb(247, 241, 241) !important;
+     box-shadow: 0 1px 0 0 rgb(252, 249, 249) !important;
+ }
+ /* invalid color */
+ 
+ .input-field input[type=password].invalid {
+     border-bottom: 1px solid rgb(250, 246, 246) !important;
+     box-shadow: 0 1px 0 0 rgb(248, 245, 245) !important;
+ }
+ /* icon prefix focus color */
+ 
+ .input-field .prefix.active {
+     color: rgb(252, 247, 247) !important;
+ }
+ 
+ form {
+     margin-bottom: -8% !important;
+ }
+ 
+ .card {
+     border-radius: 42px !important;
+ }
+ 
+ .row {
+     padding: 1%;
+     margin-left: 0;
+     margin-right: 0;
+     margin-bottom: 0;
+ }
+ 
+ .col .row {
+     margin-left: 0;
+     margin-right: 0;
+ }
+ 
+ nav {
+     background-color: #26a69a;
+ }
+ 
+ table {
+     margin-top: 1.5%;
+ }
+ 
+ thead th {
+     color: #26a69a;
+ }
