@@ -63,3 +63,11 @@
  thead th {
      color: #26a69a;
  }
+
+ .border-radius{
+    border-radius: 20px;
+ }
+
+ .color-green{
+    background-color: #26a69a;
+ }

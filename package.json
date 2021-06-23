@@ -4,14 +4,27 @@
   "description": "test",
   "main": "index.js",
   "dependencies": {
+    "binance-api-node": "^0.11.3",
+    "date-format": "^3.0.0",
+    "dateformat": "^4.5.1",
     "express": "^4.17.1",
     "materialize-css": "^1.0.0-rc.2",
-    "socket.io": "^4.1.2"
+    "node-binance-api": "^0.12.5",
+    "socket.io": "^4.1.2",
+    "tulind": "^0.8.18"
   },
   "devDependencies": {},
   "scripts": {
     "test": "start"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armandoPoveda/bot_binance.git"
+  },
+  "bugs": {
+    "url": "https://github.com/armandoPoveda/bot_binance/issues"
+  },
+  "homepage": "https://github.com/armandoPoveda/bot_binance#readme"
 }
