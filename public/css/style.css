@@ -190,3 +190,8 @@
  .m-bottom{
      margin-bottom: 0 !important;
  }
+
+ .r{
+    max-width: 100%;
+    padding: .5rem;
+ }

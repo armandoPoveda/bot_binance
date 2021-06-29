@@ -54,8 +54,11 @@ io.on('connection', function (socket) {
     connect.exchange.loadMarkets().then(function (resolve) {
         socket.emit('markets', Object.keys(resolve));
     })
-   
-  
+
+    connect.exchange.fetchBalance().then(function (resolve) {
+        console.log(resolve);
+        socket.emit('balance', resolve.free);
+    })
 
     socket.on('period_ema_1', function (data) {
         period_ema_1 = data;

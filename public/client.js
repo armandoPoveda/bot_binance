@@ -25,14 +25,89 @@ socket.on('timeframes', function (data) {
 
 socket.on('markets', function (data) {
     console.log('markets: ', data);
-    var select = $(".markets");
-    console.log(select);
-    Object.keys(data).forEach(value => {
-        var option = new Option(value, value);
-        $(option).html(value);
-        $(".markets").append(option);
+    // var select = $(".markets");
+    // console.log(select);
+    data.sort();
+    data.forEach(value => {
+        if(value.includes('/USDT') || value.includes('/BNB') || value.includes('/BTC') || value.includes('/ETH')){
+            var option = new Option(value, value);
+            $(option).html(value);
+            $(".markets").append(option);
+        }
     });
 })
+
+socket.on('balance', function (data) {
+    console.log('balance....: ', data);
+    console.log($(".tbody_balance"))
+    for (const key in data) {
+        if (Object.hasOwnProperty.call(data, key)) {
+            // var option = new Option(key, data[key]);
+            if (key === 'USDT' || key === 'BNB' || key === 'BTC' || key === 'ETH') {
+                var tr = $('<tr />')
+                var th = $("<th />");
+                var td = $("<td />");
+                var td_input_amount = $('<td><input oninput="inputAmount(this.value)" id="' + key + '" disabled class="min-content input-small" placeholder="' + key + '" type="number"></input></td>');
+                var td_input = $('<td><label>' + '<input value="' + key + '" oninput="checkBoxConfiguration(this.value)" id="check_' + key + '" type="radio" name="house"/></label></td>');
+                th.html(key);
+                td.html(data[key]);
+                tr.append(th);
+                tr.append(td);
+                tr.append(td_input_amount);
+                tr.append(td_input);
+                // console.log(tr)
+                $(".tbody_balance").append(tr);
+            }
+        }
+        $('#USDT').val(data[key]);
+    }
+    $('#USDT').removeAttr("disabled");
+    $('#check_USDT').attr('checked', 'checked');
+});
+
+function checkBoxConfiguration(value) {
+    console.log(value);
+   if (value === 'BTC') {
+    $('#BTC').removeAttr("disabled");
+    $('#check_BTC').attr('checked', 'checked');
+   } else {
+    $('#BTC').val('BTC');
+    $('#BTC').attr("disabled", 'disabled');
+   }
+
+   if (value === 'USDT') {
+    $('#USDT').removeAttr("disabled");
+    $('#check_USDT').attr('checked', 'checked');
+   } else {
+    $('#USDT').val('USDT');
+    $('#USDT').attr("disabled", 'disabled');
+   }
+
+   if (value === 'ETH') {
+    $('#ETH').removeAttr("disabled");
+    $('#check_ETH').attr('checked', 'checked');
+   } else {
+    $('#ETH').val('ETH');
+    $('#ETH').attr("disabled", 'disabled');
+   }
+
+   if (value === 'BNB') {
+    $('#BNB').removeAttr("disabled");
+    $('#check_BNB').attr('checked', 'checked');
+   } else {
+    $('#BNB').val('BNB');
+    $('#BNB').attr("disabled", 'disabled');
+   }
+}
+
+function inputAmount(value) {
+    console.log(value);
+}
+// console.log($('#check_BTC'))
+// if ($('#check_BTC').is(":checked")) {
+//     console.log('check')
+// }
+
 
 
 function saveData() {
@@ -84,21 +159,25 @@ function rsi() {
     console.log('period_rsi: ', period);
     socket.emit('rsi_period', $('#period_rsi').val());
 }
+
 function ema1() {
     var period = $('#period_ema_1').val();
     console.log('period_ema_1: ', period);
     socket.emit('period_ema_1', $('#period_ema_1').val());
 }
+
 function ema2() {
     var period = $('#period_ema_2').val();
     console.log('period_ema_2: ', period);
     socket.emit('period_ema_2', $('#period_ema_2').val());
 }
+
 function ema3() {
     var period = $('#period_ema_3').val();
     console.log('period_ema_3: ', period);
     socket.emit('period_ema_3', $('#period_ema_3').val());
 }
+
 function sar() {
     var period1 = $('#period_sar_1').val();
     var period2 = $('#period_sar_2').val();
@@ -112,6 +191,7 @@ function sar() {
 
 // FUNCTIONS RANGE
 function rangeCustom(value) {
+    // console.log(value)
     $('#span_rsi').html(value);
 }
 
