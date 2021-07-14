@@ -1,19 +1,21 @@
 const tulind = require('tulind');
-// const charts = require('../../chart/chart.js');
-// const candles = require('../../candles/candles.js');
-// console.log(tulind);
-var tulind_indi = {
 
+var tulind_indi = {
+    tulind_list : tulind.indicators,
     rsi: function (close) {
-       console.log(close);
-        var close = [4,5,6,6,6,5,5,5,6,4];
         tulind.indicators.rsi.indicator([close], [5], function (err, results) {
             // console.log("Result of rsi is: ", results[0]);
             result_rsi = results[0];
         })
-        // console.log(result_rsi.slice(-1).pop());
-        return result_rsi.slice(-1).pop();
+        return result_rsi[result_rsi.lenght - 1];
+    },
+
+    ema: function(close) {
+        tulind.indicators.ema.indicator([close], [5], function (err, results) {
+            // console.log("Result of rsi is: ", results[0]);
+            result_ema = results[0];
+        })
+        return result_ema[result_ema.lenght - 1];
     }
 }
-// console.log(tulind_indi.rsi());
 module.exports = tulind_indi;

@@ -7,58 +7,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
     <link href="https://unpkg.com/cirrus-ui" type="text/css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
         integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- HEADER-->
     <div class="header header-fixed unselectable header-animated">
         <div class="header-brand">
             <div class="nav-item no-hover">
                 <h6 class="title">Bot Binance</h6>
             </div>
-            <div class="nav-item nav-btn" id="header-btn"></div>
+            <div style="padding: 10px; margin-right: -15px;" class="nav-item nav-btn" id="header-btn"><i
+                    class="fas fa-2x fa-bars"></i></div>
         </div>
         <div class="header-nav" id="header-menu">
-            <div class="nav-left">
-                <div class="nav-item text-center"> <a href="#"> <span class="icon"> <i class="fab fa-wrapper fa-twitter"
-                                aria-hidden="true"></i> </span> </a> </div>
+            <div class="nav-right ignore-screen level">
+                    <span class="m-3">Key:</span>
+                <div><input type="password" value="password"></div>
             </div>
-            <div class="nav-left row ignore-screen level">
-                <div class="col-3 ignore-screen level-item">
-                    <span class="m-0">Key:</span>
-                </div>
-                <div class="col-9 ignore-screen level-item"><input type="password" value="password"></div>
+            <div class=" nav-right ">
+                    <p class="m-3">Secret:</span>
+                <div><input type="password" value="password"></div>
             </div>
-            <div class="row nav-left ignore-screen level">
-                <div class="col-3 ignore-screen level-item">
-                    <p class="m-0">Secret:</span>
-                </div>
-                <div class="col-9 ignore-screen level-item"><input type="password" value="password"></div>
-            </div>
-            <!-- <div class="avatar"><img src="..." alt="avatar"></div> -->
         </div>
     </div>
-    <div style="padding-top: 80px; margin: 10px;" class="u-text-center">
+    <!-- HEADER-->
+
+    <!-- BODY -->
+    <div>
+        <div class="divider"></div>
         <div class="row u-center">
-            <div class="col-4"
+            <div class="col-3 u-text-center"
                 style="margin: 1px; padding: 10px; background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
                 <p class="tile__title m-0"><b>Configuration</b></p>
+                <div class="divider"></div>
                 <div class="row ignore-screen level">
                     <div class="col-12 input-control">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th><abbr title="Title1">Name</abbr></th>
-                                    <th><abbr title="Title2">Balance</abbr></th>
-                                    <th><abbr title="Title2">Amount</abbr></th>
+                                    <th>Name</th>
+                                    <th>Balance</th>
+                                    <th>Amount</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -68,7 +70,6 @@
                         </table>
                     </div>
                 </div>
-   
                 <div class="row">
                     <div class="col-6 input-control">
                         <select class="select time_frame">
@@ -77,221 +78,213 @@
                     </div>
                     <div class="col-6 input-control">
                         <select class="select markets">
-                            <option selected disabled>Coin/USDT</option>
+                            <option selected disabled>Markets</option>
                         </select>
                     </div>
                 </div>
+                <div class="form-ext-control form-ext-checkbox">
+                    <input id="check-success" class="form-ext-input form-ext-input--success" type="checkbox"/>
+                    <label class="form-ext-label" for="check-success">Always same Amount</label>
+                </div>
+                <input type="submit" value="Submit" class="m-bottom text-blue-600  btn-xsmall">
             </div>
-            <div class="col-3"
-                style="margin: 1px; background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
-                <p><b>Buy Strategy</b></p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><abbr title="Title1">Name</abbr></th>
-                            <th><abbr title="Title2">Value</abbr></th>
-                            <th><abbr title="Title3">Delete</abbr></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- <tr>
-                            <th>1</th>
-                            <td>Row:1 Cell:1</td>
-                            <td>Row:1 Cell:2</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>Row:2 Cell:1</td>
-                            <td>Row:2 Cell:2</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Row:3 Cell:1</td>
-                            <td>Row:3 Cell:2</td>
-                        </tr> -->
-                    </tbody>
-                </table>
-            </div>
+            <div class="col-4">
+                <div class="row u-text-center">
+                    <div
+                        style="background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
+                        <div class="row">
+                            <div class="col-7">
+                                <p><b>Indicators Value</b></p>
+                            </div>
+                            <div class="col-5">
+                                <p id="time">Time</p>
+                            </div>
+                        </div>
+                        
+                      
+                        <div class="divider"></div>
+                        <div class="tab-container tabs-classic tabs-center">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="tab-item-content" role="presentation">
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                        aria-selected="true">RSI</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-profile" type="button" role="tab"
+                                        aria-controls="pills-profile" aria-selected="false">EMA</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-contact" type="button" role="tab"
+                                        aria-controls="pills-contact" aria-selected="false">SAR</button>
+                                </li>
+                            </ul>
+                        </div>
 
-            <div class="col-3"
-                style="margin: 1px; background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
-                <p><b>Sell Stategy</b></p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><abbr title="Title1">Name</abbr></th>
-                            <th><abbr title="Title2">Value</abbr></th>
-                            <th><abbr title="Title3">Delete</abbr></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- <tr>
-                            <th>1</th>
-                            <td>Row:1 Cell:1</td>
-                            <td>Row:1 Cell:2</td>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>Row:2 Cell:1</td>
-                            <td>Row:2 Cell:2</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Row:3 Cell:1</td>
-                            <td>Row:3 Cell:2</td>
-                        </tr> -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="row">
-            <div class="col-6">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                aria-labelledby="pills-home-tab">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Indicator</th>
+                                            <th>Value</th>
+                                            <th>Period</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="min-content" style="vertical-align: middle;">RSI</td>
+                                            <td style="vertical-align: middle;" id="value_rsi"></td>
+                                            <td style="vertical-align: middle;"><input
+                                                    class="ignore-screen min-content input-small m-1" id="period_rsi" placeholder="5"
+                                                    type="number">
+                                            </td>
+                                            <td style="vertical-align: middle;">
+                                                <input onclick="rsi()" type="submit" value="Submit"
+                                                    class="m-bottom text-blue-600  btn-xsmall">
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                aria-labelledby="pills-profile-tab">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Indicator</th>
+                                            <th>Value</th>
+                                            <th>Period</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="vertical-align: middle;">EMA</td>
+                                            <td style="vertical-align: middle;">
+                                                <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
+                                                    id="value_ema_1"></div>
+                                                <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
+                                                    id="value_ema_2"></div>
+                                                <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
+                                                    id="value_ema_3"></div>
+                                            </td>
+                                            <td>
+                                                <div style="vertical-align: middle;" class="m-1 u-round"><input
+                                                        class="min-content input-small" id="period_ema_1" placeholder="5" type="number">
+                                                </div>
+                                                <div style="vertical-align: middle;" class="m-1 u-round"><input
+                                                        class="min-content input-small" id="period_ema_2" placeholder="10" type="number">
+                                                </div>
+                                                <div style="vertical-align: middle;" class="m-1 u-round"><input
+                                                        class="min-content input-small" id="period_ema_3" placeholder="20" type="number">
+                                                </div>
+                                            </td>
+                                            <td style="vertical-align: middle;">
+                                                <input type="submit" value="Submit" onclick="ema()"
+                                                    class="m-bottom text-blue-600  btn-xsmall">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                aria-labelledby="pills-contact-tab">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Indicator</th>
+                                            <th>Value</th>
+                                            <th>Period</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="vertical-align: middle;">SAR</td>
+                                            <td style="vertical-align: middle;" id="value_sar"></td>
+                                            <td>
+                                                <div class="m-1 u-round"><input
+                                                        class="ignore-screen min-content input-small" placeholder="0.02"
+                                                        type="number"></div>
+                                                <div class="m-1 u-round"><input
+                                                        class="ignore-screen min-content input-small" placeholder="0.2"
+                                                        type="number"></div>
+                                            </td>
+                                            <td style="vertical-align: middle;">
+                                                <input type="submit" value="Submit"
+                                                    class="m-bottom text-blue-600  btn-xsmall">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div
                     style="background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
-                    <p><b>Value Indicators</b></p>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th><abbr title="Name">Name</abbr></th>
-                                <th><abbr title="Value">Value</abbr></th>
-                                <th><abbr title="Period">Period</abbr></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class="min-content" style="vertical-align: middle;">RSI</th>
-                                <td style="vertical-align: middle;" id="value_rsi"></td>
-                                <td style="vertical-align: middle;"><input
-                                        class="ignore-screen min-content input-small m-1" placeholder="5" type="number">
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <input type="submit" value="Submit"
-                                        class="m-bottom text-blue-600 bg-blue-100 btn-xsmall">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th style="vertical-align: middle;">EMA</th>
-                                <td style="vertical-align: middle;">
-                                    <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                        id="value_ema_1"></div>
-                                    <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                        id="value_ema_2"></div>
-                                    <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                        id="value_ema_3"></div>
-                                </td>
-                                <td>
-                                    <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                            class="min-content input-small" placeholder="5" type="number"></div>
-                                    <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                            class="min-content input-small" placeholder="10" type="number"></div>
-                                    <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                            class="min-content input-small" placeholder="20" type="number"></div>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <input type="submit" value="Submit"
-                                        class="m-bottom text-blue-600 bg-blue-100 btn-xsmall">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th style="vertical-align: middle;">SAR</th>
-                                <td style="vertical-align: middle;" id="value_sar"></td>
-                                <td>
-                                    <div class="m-1 u-round"><input class="ignore-screen min-content input-small"
-                                            placeholder="0.02" type="number"></div>
-                                    <div class="m-1 u-round"><input class="ignore-screen min-content input-small"
-                                            placeholder="0.2" type="number"></div>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <input type="submit" value="Submit"
-                                        class="m-bottom text-blue-600 bg-blue-100 btn-xsmall">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <p class="tile__title m-0 u-text-center"><b>Strategy Custom</b></p>
+                        <div class="divider"></div>
+                        <div class="col-4 input-control">
+                            <select class="select indicators">
+                                <option selected disabled>Indicators</option>
+                            </select>
+                        </div>
+                        <div class="col-4 input-control">
+                            <select class="select markets">
+                                <option selected disabled>Conditions</option>
+                            </select>
+                        </div>
+                        <div class="col-4 input-control">
+                            <select class="select markets">
+                                <option selected disabled>Pattern</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 u-text-center">
+                            <input type="submit" value="Submit" class="m-bottom text-blue-600  btn-xsmall">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-6">
-                <div style="background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
-                    <p><b>Custom Strategy</b></p>
-                    <div class="tab-container tabs-classic tabs-fill">
-                        <ul>
-                            <li class="selected"><div class="tab-item-content">RSI</div></li>
-                            <li><div class="tab-item-content">EMA</div></li>
-                            <li><div class="tab-item-content">SAR</div></li>
-                            <li><div class="tab-item-content">SMA</div></li>
-                        </ul>
+            <div class="col-4 "
+                style="margin: 1px; padding: 10px; background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
+                <p class="tile__title m-0 u-text-center"><b>Add Strategy</b></p>
+                <div class="divider"></div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Indicator</th>
+                            <th>Value</th>
+                            <th>Period</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <div class="divider"></div>
+                <div class="row">
+                    <div class="col-6  u-text-center">
+                        <input type="submit" value="Submit" class="m-bottom text-blue-600  btn-xsmall">
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th><abbr title="Name">Name</abbr></th>
-                                <th><abbr title="Value">Options</abbr></th>
-                                <th><abbr title="Period">Value</abbr></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class="min-content" style="vertical-align: middle;">RSI</th>
-                                <td>
-                                    <div style="display: unset; vertical-align: middle;" class="btn-group btn-group-fill">
-                                        <button class="text-orange-700 btn-xsmall"><i class="fas fa-chevron-left"></i></button>
-                                        <button class="text-orange-700 btn-xsmall"><i class="fas fa-equals"></i></button>
-                                        <button class="text-orange-700 btn-xsmall"><i class="fas fa-chevron-right"></i></button>
-                                    </div>
-                                </td>
-                                <td style="vertical-align: middle;"><input class="m-1 ignore-screen min-content input-small"
-                                        placeholder="1-100" type="number"></td>
-                                <td style="vertical-align: middle;">
-                                    <input type="submit" value="Submit"
-                                        class="m-bottom text-blue-600 bg-blue-100 btn-xsmall">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th style="vertical-align: middle;">EMA</th>
-                                <td style="vertical-align: middle;">
-                                    <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                        id="value_ema_1"></div>
-                                    <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                        id="value_ema_2"></div>
-                                    <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                        id="value_ema_3"></div>
-                                </td>
-                                <td>
-                                    <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                            class="min-content input-small" placeholder="5" type="number"></div>
-                                    <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                            class="min-content input-small" placeholder="10" type="number"></div>
-                                    <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                            class="min-content input-small" placeholder="20" type="number"></div>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <input type="submit" value="Submit"
-                                        class="m-bottom text-blue-600 bg-blue-100 btn-xsmall">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th style="vertical-align: middle;">SAR</th>
-                                <td style="vertical-align: middle;" id="value_sar"></td>
-                                <td>
-                                    <div class="m-1 u-round"><input class="ignore-screen min-content input-small"
-                                            placeholder="0.02" type="number"></div>
-                                    <div class="m-1 u-round"><input class="ignore-screen min-content input-small"
-                                            placeholder="0.2" type="number"></div>
-                                </td>
-                                <td style="vertical-align: middle;">
-                                    <input type="submit" value="Submit"
-                                        class="m-bottom text-blue-600 bg-blue-100 btn-xsmall">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="col-6 u-text-center">
+                        <input type="submit" value="Submit" class="m-bottom text-blue-600  btn-xsmall">
+                    </div>
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="divider"></div>
     </div>
 </body>
 

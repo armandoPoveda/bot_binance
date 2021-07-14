@@ -1,6 +1,6 @@
 const Binance = require('node-binance-api');
 const binance = new Binance();
-const Binance2 = require('binance-api-node').default
+const Binance2 = require('binance-api-node').default;
 var ccxt = require('ccxt')
 
 

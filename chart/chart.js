@@ -1,5 +1,5 @@
 const connect = require('../connect/connect.js');
-// var ped = null;
+
 connect.binance.websockets.chart("BNBUSDT", "1m", (symbol, interval, chart) => {
     let tick = connect.binance.last(chart);
 

@@ -187,11 +187,92 @@
      padding: .20rem !important;
  }
 
- .m-bottom{
+ .m-bottom {
      margin-bottom: 0 !important;
  }
 
- .r{
-    max-width: 100%;
-    padding: .5rem;
+ .r {
+     max-width: 100%;
+     padding: .5rem;
  }
+
+ #contentContainer {
+     position: relative;
+     left: 100px;
+     width: 500px;
+     height: 300px;
+     border: 1px black solid;
+     overflow: hidden;
+     background-color: #EEE;
+     cursor: pointer;
+ }
+
+ #thing {
+     position: relative;
+     width: 40px;
+     height: 40px;
+     left: 50px;
+     top: 50px;
+     background-color: red;
+     transition: left .5s cubic-bezier(.42, -0.3, .78, 1.25), top .5s cubic-bezier(.42, -0.3, .78, 1.25);
+ }
+
+ .tab-item-content {
+     margin: 1px !important;
+ }
+
+ .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+     color: #fff;
+     background: linear-gradient(to right, #8e2de2, #4a00e0);
+     color: #fff;
+     border-radius: .25rem;
+     ;
+ }
+
+ .nav-pills .nav-link {
+     color: #fff;
+     /* background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;; */
+ }
+
+ .table tr td {
+     /* padding: .20rem !important; */
+     color: #fff;
+ }
+
+ .tab-container ul {
+     margin: .0rem;
+     flex-grow: 0;
+ }
+
+ select {
+     color: white;
+ }
+
+ option {
+     color: black;
+ }
+
+ /* #contentContainer {
+    width: 550px;
+    height: 350px;
+    border: 5px black solid;
+    overflow: hidden;
+    background-color: #F2F2F2;
+    cursor: pointer; */
+
+ /* } */
+
+ #thing {
+     position: relative;
+     /* left: 50px;
+    top: 50px; */
+     /* transition: left .5s ease-in, top .5s ease-in; */
+ }
+
+ td {
+     vertical-align: middle !important;
+ }
+
+ /* .header .nav-btn {
+     display: flex;
+ } */
