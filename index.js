@@ -31,6 +31,7 @@ server.listen(3000, function () {
     console.log('HTTP server started on port 3000');
 });
 
+
 var period_rsi = 5;
 var period_ema_1 = 5;
 var period_ema_2 = 10;
@@ -50,13 +51,13 @@ io.on('connection', function (socket) {
     });
     socket.emit('list_indicators', Object.keys(indicators));
 
-    socket.emit('timeframes', Object.keys(connect.exchange.timeframes));
+    socket.emit('timeframes', Object.keys(connect.cctx_exchange.timeframes));
 
-    connect.exchange.loadMarkets().then(function (resolve) {
+    connect.cctx_exchange.loadMarkets().then(function (resolve) {
         socket.emit('markets', Object.keys(resolve));
     })
 
-    connect.exchange.fetchBalance().then(function (resolve) {
+    connect.cctx_exchange.fetchBalance().then(function (resolve) {
         // console.log(resolve);
         socket.emit('balance', resolve.free);
     })
@@ -106,7 +107,7 @@ io.on('connection', function (socket) {
 
 let input = {
     values: [],
-    period: 5
+    period: 14
 }
 
 // //WEBSOCKETS CHARTS (send data client indicators values)
@@ -251,39 +252,74 @@ connect.binance.websockets.chart("BNBUSDT", "1m", (symbol, interval, chart) => {
 
 // console.log(element);
 // var algo = true;
-// connect.binance.websockets.candlesticks(['BNBUSDT'], "1m", (candlesticks) => {
-//     console.log('websocket');
-//     // console.log('websocket', obj_candles.close);
-//     let { e: eventType, E: eventTime, s: symbol, k: ticks } = candlesticks;
-//     let { o: open, h: high, l: low, c: close, v: volume, n: trades, i: interval, x: isFinal, q: quoteVolume, V: buyVolume, Q: quoteBuyVolume } = ticks;
-//     // console.info(symbol+" "+interval+" candlestick update");
-//     // console.info("open: "+open);
-//     // console.info("high: "+high);
-//     // console.info("low: "+low);
-//     // console.info("close: "+close);
-//     // console.info("volume: "+volume);
-//     // console.info("isFinal: "+isFinal);
-//     // console.log(obj_candles.close)
-//     // if(algo === true){
+var time = [];
+var value = [];
+var algo = { time: time, value: value };
+var input_charts = []
+connect.binance.websockets.candlesticks(['BNBUSDT'], "1m", (candlesticks) => {
+    console.log('websocket');
+    // console.log('websocket', candlesticks);
+    let { e: eventType, E: eventTime, s: symbol, k: ticks } = candlesticks;
+    console.log(eventTime)
+    let { o: open, h: high, l: low, c: close, v: volume, n: trades, i: interval, f: time, x: isFinal, q: quoteVolume, V: buyVolume, Q: quoteBuyVolume } = ticks;
+    // console.info(symbol+" "+interval+" candlestick update");
+    // console.info("open: "+open);
+    // console.info("high: "+high);
+    // console.info("low: "+low);
+    // console.info("close: "+close);
+    // console.info("volume: "+volume);
+    // console.info("isFinal: "+isFinal);
+    // console.log(obj_candles.close)
+    // if(algo === true){
 
-//     if (isFinal === true) {
-//         // console.log('isFinal: ', isFinal)
-//         obj_candles.close.shift();
-//         input.values.shift();
-//         obj_candles.close.push(close);
-//         input.values.push(close);
-//     } else {
-//         // console.log('isFinal: ', isFinal)
-//         obj_candles.close.pop();
-//         input.values.pop();
-//         obj_candles.close.push(close);
-//         input.values.push(close);
-//     }
+    // if (isFinal === true) {
+    //     // console.log('isFinal: ', isFinal)
+    //     obj_candles.close.shift();
+    //     input.values.shift();
+    //     obj_candles.close.push(close);
+    //     input.values.push(close);
+    // } else {
+    //     // console.log('isFinal: ', isFinal)
+    //     obj_candles.close.pop();
+    //     input.values.pop();
+    //     obj_candles.close.push(close);
+    //     input.values.push(close);
+    // }
 
-//     input.values = obj_candles.close;
-//     var rsi = indicators.rsi(input);
-//     console.log(rsi);
-// });
+    // input.values = obj_candles.close;
+    // var rsi = indicators.rsi(input);
+    // console.log(rsi);
+    // eventTime = eventTime + 1000;
+    // console.log(dateformat(eventTime));
+    // var d = new Date(eventTime),
+    //     month = '' + (d.getMonth() + 1),
+    //     day = '' + d.getDate(),
+    //     year = d.getFullYear();
+
+    // if (month.length < 2)
+    //     month = '0' + month;
+    // if (day.length < 2)
+    //     day = '0' + day;
+
+    // var new_date = [year, month, day].join('-');
+    // console.log(dateformat(new_date));
+    // var date = dateformat(eventTime).substr(dateformat(eventTime).length - 8); // => "Tabs1"
+    // date.replace(':', '-');
+    // console.log(date.replace(/:/g, '-'));
+    // connect.binance.useServerTime().then(function(resolve) {
+        // console.log(resolve.serverTime);
+        algo.time = Math.floor(Date.now() / 1000);
+        algo.value = close;
+        // console.log(dateformat(algo.time));
+        // input_charts.push(algo);
+        // console.log(dateformat( resolve.serverTime));
+        console.log('algo: ', algo)
+        io.emit('chart', algo);
+    // });
+
+   
+});
+
 
 
 

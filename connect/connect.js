@@ -10,13 +10,18 @@ if (typeof localStorage === "undefined" || localStorage === null) {
     localStorage = new LocalStorage('./scratch');
 }
 
-const exchangeId = 'binance'
-, exchangeClass = ccxt[exchangeId]
-, exchange = new exchangeClass ({
+// const exchangeId = 'binance'
+// , exchangeClass = ccxt[exchangeId]
+// , exchange = new exchangeClass ({
+//     'apiKey':  localStorage.getItem('key'),
+//     'secret': localStorage.getItem('secret'),
+// })
+let cctx_exchange = new ccxt.binance({
     'apiKey':  localStorage.getItem('key'),
     'secret': localStorage.getItem('secret'),
-})
-
+}
+    
+)
 var conn = {
     binance: new Binance().options({
         APIKEY: localStorage.getItem('key'),
@@ -33,7 +38,7 @@ var conn = {
         apiSecret: localStorage.getItem('secret'),
     }),
 
-    exchange
+    cctx_exchange
 }
 
 // console.log(binance.useServerTime());

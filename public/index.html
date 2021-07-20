@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="page">
+<html lang="en">
 
 <head>
     <title>Getting Started with Cirrus</title>
@@ -7,6 +7,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
     <link href="https://unpkg.com/cirrus-ui" type="text/css" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
         integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -17,14 +18,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-colors.min.css">
+        <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-rtl.min.css">
+        <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-icons.min.css"> -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
+
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <!-- HEADER-->
-    <div class="header header-fixed unselectable header-animated">
+    <!-- <div class="header header-fixed unselectable header-animated">
         <div class="header-brand">
             <div class="nav-item no-hover">
                 <h6 class="title">Bot Binance</h6>
@@ -34,258 +41,419 @@
         </div>
         <div class="header-nav" id="header-menu">
             <div class="nav-right ignore-screen level">
-                    <span class="m-3">Key:</span>
+                <span class="m-3">Key:</span>
                 <div><input type="password" value="password"></div>
             </div>
             <div class=" nav-right ">
-                    <p class="m-3">Secret:</span>
+                <p class="m-3">Secret:</span>
                 <div><input type="password" value="password"></div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- HEADER-->
 
     <!-- BODY -->
     <div>
-        <div class="divider"></div>
-        <div class="row u-center">
-            <div class="col-3 u-text-center"
-                style="margin: 1px; padding: 10px; background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
-                <p class="tile__title m-0"><b>Configuration</b></p>
-                <div class="divider"></div>
-                <div class="row ignore-screen level">
-                    <div class="col-12 input-control">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Balance</th>
-                                    <th>Amount</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody class="tbody_balance">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card text-center shadow-lg">
+                        <div class="card-header">
+                            API
+                        </div>
+                        <div class="card-body">
+                            <input type="password" placeholder="API KEY">
+                            <br>
+                            <br>
+                            <input type="password" placeholder="API SECRET">
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a href="#" class="btn btn-success">Test connection</a>
+                        </div>
+                    </div>
+                    <div class="card text-center shadow-lg">
+                        <div class="card-header">
+                            Configuration
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4 input-control">
+                                    <select name="markets" class="select markets">
+                                        <option selected disabled>Markets</option>
+                                    </select>
+                                </div>
+                                <div class="col-4 input-control">
+                                    <select name="time_frame" class="select time_frame">
+                                        <option selected disabled>Time Frame</option>
+                                    </select>
+                                </div>
+                                <div class="col-4 input-control">
+                                    <select name="markets" class="select">
+                                        <option value="Order" disabled>Order</option>
+                                        <option value="limit">Limit</option>
+                                        <option value="market">Market</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <input onclick="saveConfiguration()" type="submit" value="save" class="btn btn-success">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card text-center shadow-lg">
+                        <div class="card-header">
+                            Wallet
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Balance</th>
+                                        <th>Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbody_balance">
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 input-control">
-                        <select class="select time_frame">
-                            <option selected disabled>Time Frame</option>
-                        </select>
-                    </div>
-                    <div class="col-6 input-control">
-                        <select class="select markets">
-                            <option selected disabled>Markets</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-ext-control form-ext-checkbox">
-                    <input id="check-success" class="form-ext-input form-ext-input--success" type="checkbox"/>
-                    <label class="form-ext-label" for="check-success">Always same Amount</label>
-                </div>
-                <input type="submit" value="Submit" class="m-bottom text-blue-600  btn-xsmall">
-            </div>
-            <div class="col-4">
-                <div class="row u-text-center">
-                    <div
-                        style="background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
-                        <div class="row">
-                            <div class="col-7">
-                                <p><b>Indicators Value</b></p>
+                                </tbody>
+                            </table>
+                            <div class="form-ext-control form-ext-checkbox">
+                                <input id="check-amount" class="form-ext-input form-ext-input--success"
+                                    type="checkbox" />
+                                <label class="form-ext-label" for="check-amount">Always same Amount</label>
                             </div>
-                            <div class="col-5">
-                                <p id="time">Time</p>
+                            <div class="form-ext-control form-ext-checkbox">
+                                <input id="check-candle" class="form-ext-input form-ext-input--success"
+                                    type="checkbox" />
+                                <label class="form-ext-label" for="check-candle">Wait finished candle</label>
                             </div>
                         </div>
-                        
-                      
-                        <div class="divider"></div>
-                        <div class="tab-container tabs-classic tabs-center">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="tab-item-content" role="presentation">
-                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                        aria-selected="true">RSI</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-profile" type="button" role="tab"
-                                        aria-controls="pills-profile" aria-selected="false">EMA</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-contact" type="button" role="tab"
-                                        aria-controls="pills-contact" aria-selected="false">SAR</button>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                aria-labelledby="pills-home-tab">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Indicator</th>
-                                            <th>Value</th>
-                                            <th>Period</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="min-content" style="vertical-align: middle;">RSI</td>
-                                            <td style="vertical-align: middle;" id="value_rsi"></td>
-                                            <td style="vertical-align: middle;"><input
-                                                    class="ignore-screen min-content input-small m-1" id="period_rsi" placeholder="5"
-                                                    type="number">
-                                            </td>
-                                            <td style="vertical-align: middle;">
-                                                <input onclick="rsi()" type="submit" value="Submit"
-                                                    class="m-bottom text-blue-600  btn-xsmall">
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                                aria-labelledby="pills-profile-tab">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Indicator</th>
-                                            <th>Value</th>
-                                            <th>Period</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style="vertical-align: middle;">EMA</td>
-                                            <td style="vertical-align: middle;">
-                                                <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                                    id="value_ema_1"></div>
-                                                <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                                    id="value_ema_2"></div>
-                                                <div style="vertical-align: middle;" class="ignore-screen m-1 u-round"
-                                                    id="value_ema_3"></div>
-                                            </td>
-                                            <td>
-                                                <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                                        class="min-content input-small" id="period_ema_1" placeholder="5" type="number">
-                                                </div>
-                                                <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                                        class="min-content input-small" id="period_ema_2" placeholder="10" type="number">
-                                                </div>
-                                                <div style="vertical-align: middle;" class="m-1 u-round"><input
-                                                        class="min-content input-small" id="period_ema_3" placeholder="20" type="number">
-                                                </div>
-                                            </td>
-                                            <td style="vertical-align: middle;">
-                                                <input type="submit" value="Submit" onclick="ema()"
-                                                    class="m-bottom text-blue-600  btn-xsmall">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                aria-labelledby="pills-contact-tab">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Indicator</th>
-                                            <th>Value</th>
-                                            <th>Period</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style="vertical-align: middle;">SAR</td>
-                                            <td style="vertical-align: middle;" id="value_sar"></td>
-                                            <td>
-                                                <div class="m-1 u-round"><input
-                                                        class="ignore-screen min-content input-small" placeholder="0.02"
-                                                        type="number"></div>
-                                                <div class="m-1 u-round"><input
-                                                        class="ignore-screen min-content input-small" placeholder="0.2"
-                                                        type="number"></div>
-                                            </td>
-                                            <td style="vertical-align: middle;">
-                                                <input type="submit" value="Submit"
-                                                    class="m-bottom text-blue-600  btn-xsmall">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    style="background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
-                    <div class="row">
-                        <p class="tile__title m-0 u-text-center"><b>Strategy Custom</b></p>
-                        <div class="divider"></div>
-                        <div class="col-4 input-control">
-                            <select class="select indicators">
-                                <option selected disabled>Indicators</option>
-                            </select>
-                        </div>
-                        <div class="col-4 input-control">
-                            <select class="select markets">
-                                <option selected disabled>Conditions</option>
-                            </select>
-                        </div>
-                        <div class="col-4 input-control">
-                            <select class="select markets">
-                                <option selected disabled>Pattern</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 u-text-center">
-                            <input type="submit" value="Submit" class="m-bottom text-blue-600  btn-xsmall">
+                        <div class="card-footer text-muted">
+                            <input onclick="saveConfiguration()" type="submit" value="save" class="btn btn-success">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-4 "
-                style="margin: 1px; padding: 10px; background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; border-radius: .25rem;">
-                <p class="tile__title m-0 u-text-center"><b>Add Strategy</b></p>
-                <div class="divider"></div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Indicator</th>
-                            <th>Value</th>
-                            <th>Period</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-1">
+                </div> -->
+                <div class="col-6">
+                    <div class="card text-center shadow-lg">
+                        <div class="card-header">
+                            <div class="stepper">
+                                <div class="step--1 step-active">Step 1</div>
+                                <div class="step--2">Step 2</div>
+                                <div class="step--3">Step 3</div>
+                                <div class="step--4">Finish</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form class="form form-active">
+                                <div class="form--header-container">
+                                    <h1 class="form--header-title">
+                                        Personal Info
+                                    </h1>
 
-                    </tbody>
-                </table>
-                <div class="divider"></div>
-                <div class="row">
-                    <div class="col-6  u-text-center">
-                        <input type="submit" value="Submit" class="m-bottom text-blue-600  btn-xsmall">
+                                    <p class="form--header-text">
+                                        Tell us more about you.
+                                    </p>
+                                </div>
+                                <input type="text" placeholder="Name" />
+                                <input type="text" placeholder="Email" />
+                                <input type="text" placeholder="Password" />
+                                <button class="form__btn" id="btn-1">Next</button>
+                            </form>
+                            <form class="form">
+                                <div class="form--header-container">
+                                    <h1 class="form--header-title">
+                                        Company Info
+                                    </h1>
+
+                                    <p class="form--header-text">
+                                        Tell us more about your company.
+                                    </p>
+                                </div>
+
+                                <input type="text" placeholder="Company Name" />
+                                <input type="text" placeholder="Job title" />
+                                <input type="text" placeholder="Location" />
+                                <button class="form__btn" id="btn-2-prev">Previous</button>
+                                <button class="form__btn" id="btn-2-next">Next</button>
+                            </form>
+                            <form class="form">
+                                <div class="form--header-container">
+                                    <h1 class="form--header-title">
+                                        Social account
+                                    </h1>
+
+                                    <p class="form--header-text">
+                                        Tell us more about your social account.
+                                    </p>
+                                </div>
+                                <input type="text" placeholder="Linkedin" />
+                                <input type="text" placeholder="Twitter" />
+                                <input type="text" placeholder="Github" />
+                                <button class="form__btn" id="btn-3">Submit</button>
+                            </form>
+                            <div class="form--message"></div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a href="#" class="btn btn-success" onclick="addStrategy()">add</a>
+                        </div>
+                        <div class="col align-self-end">
+                        </div>
                     </div>
-                    <div class="col-6 u-text-center">
-                        <input type="submit" value="Submit" class="m-bottom text-blue-600  btn-xsmall">
+                </div>
+                <div class="col-6">
+                    <div class="card text-center shadow-lg">
+                        <div class="card-header">
+                            PROFIT
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Take Profit</th>
+                                        <th>Stop Loss</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input style="width: 70px; text-align: center;"
+                                                class="input-small m-11 min-content" type="number" name="" id=""
+                                                placeholder="0.2">
+                                        </td>
+                                        <td>
+                                            <input style="width: 70px; text-align: center;"
+                                                class="input-small m-11 min-content" type="number" name="" id=""
+                                                placeholder="0.1">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <a href="#" class="btn btn-success">Start</a>
+                            <a href="#" class="btn btn-danger">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <main> -->
+            <!-- <div class="stepper">
+                  <div class="step--1 step-active">Step 1</div>
+                  <div class="step--2">Step 2</div>
+                  <div class="step--3">Step 3</div>
+                  <div class="step--4">Finish</div>
+                </div>
+                <form class="form form-active">
+                  <div class="form--header-container">
+                    <h1 class="form--header-title">
+                      Personal Info
+                    </h1>
+              
+                    <p class="form--header-text">
+                      Tell us more about you.
+                    </p>
+                  </div>
+                  <input type="text" placeholder="Name" />
+                  <input type="text" placeholder="Email" />
+                  <input type="text" placeholder="Password" />
+                  <button class="form__btn" id="btn-1">Next</button>
+                </form>
+                <form class="form">
+                  <div class="form--header-container">
+                    <h1 class="form--header-title">
+                      Company Info
+                    </h1>
+              
+                    <p class="form--header-text">
+                      Tell us more about your company.
+                    </p>
+                  </div>
+              
+                  <input type="text" placeholder="Company Name" />
+                  <input type="text" placeholder="Job title" />
+                  <input type="text" placeholder="Location" />
+                  <button class="form__btn" id="btn-2-prev">Previous</button>
+                  <button class="form__btn" id="btn-2-next">Next</button>
+                </form>
+                <form class="form">
+                  <div class="form--header-container">
+                    <h1 class="form--header-title">
+                      Social account
+                    </h1>
+              
+                    <p class="form--header-text">
+                      Tell us more about your social account.
+                    </p>
+                  </div>
+                  <input type="text" placeholder="Linkedin" />
+                  <input type="text" placeholder="Twitter" />
+                  <input type="text" placeholder="Github" />
+                  <button class="form__btn" id="btn-3">Submit</button>
+                </form>
+                <div class="form--message"></div> -->
+            <!-- </main> -->
+            <!-- <div class="card text-center shadow-lg">
+                <div class="card-header">
+                    Strategy Custom
+                </div>
+                <div class="card-body">
+                  
+                     <div class="tab-container tabs-classic tabs-center">
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <li class="tab-item-content" role="presentation">
+                                <button class="nav-link active buy color_buy_text" id="pills-home-tab"
+                                    data-bs-toggle="pill" data-bs-target="#home" type="button" role="tab"
+                                    aria-controls="home" aria-selected="true">BUY</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link sell color_sell_text" id="pills-profile-tab"
+                                    data-bs-toggle="pill" data-bs-target="#home" type="button" role="tab"
+                                    aria-controls="pills-profile" aria-selected="false">SELL</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                     <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Period</th>
+                                <th>Condition</th>
+                                <th>Value</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <tr>
+                                <td>
+                                    <select class="select indicators">
+                                        <option selected disabled>Indicators</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="ignore-screen min-content input-small m-1" id="period_indicator"
+                                        placeholder="50" type="number">
+                                </td>
+                                <td>
+                                    <select class="select condition">
+                                        <option selected disabled>Conditions</option>
+                                        <option value=">">></option>
+                                        <option value="<">
+                                            << /option>
+                                        <option value="cross_over">cross_over</option>
+                                        <option value="cross_below">cross_below</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="ignore-screen min-content input-small m-1" id="value_indicator"
+                                        placeholder="50" type="number">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer text-muted">
+                    <input onclick="addStrategy()" type="submit" value="add" class="btn btn-success">
+                </div>
+            </div> -->
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card text-center shadow-lg">
+                        <div class="card-header color_buy">
+                            BUY strategy
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Indicator</th>
+                                        <th>Condition</th>
+                                        <th>Value</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbody_value_strategy">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-muted color_buy">
+                            <!-- <a href="#" class="btn btn-success">Test connection</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card text-center shadow-lg">
+                        <div class="card-header color_sell">
+                            SELL strategy
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Indicator</th>
+                                        <th>Condition</th>
+                                        <th>Value</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbody_value_strategy_sell">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-muted color_sell">
+                            <!-- <a href="#" class="btn btn-success">Test connection</a> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="divider"></div>
+
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+        <div id="tradingview_03869"></div>
+        <div class="tradingview-widget-copyright"><a
+                href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener"
+                target="_blank"><span class="blue-text">BTCUSDT Chart</span></a> by TradingView</div>
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <script type="text/javascript">
+            new TradingView.widget(
+                {
+                    "width": 980,
+                    "height": 610,
+                    "symbol": "BINANCE:BTCUSDT",
+                    "interval": "D",
+                    "timezone": "Etc/UTC",
+                    "theme": "dark",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "allow_symbol_change": true,
+                    "studies": [
+                        "RSI@tv-basicstudies"
+                    ],
+                    "container_id": "tradingview_03869"
+                }
+            );
+        </script>
     </div>
+    <!-- TradingView Widget END -->
+    <!-- <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script> -->
+    <script src="js/stepper.js"></script>
 </body>
 
 </html>
