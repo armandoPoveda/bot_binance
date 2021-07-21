@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Getting Started with Cirrus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+  <link href="https://unpkg.com/cirrus-ui" type="text/css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <!-- boostrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/bs-stepper.min.css">
+  <script src="js/bs-stepper.min.js"></script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+  <script src="js/side_bar.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/side_bar.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-6">
+        <div class="card text-center shadow-lg">
+          <div class="card-header">
+            API
+          </div>
+          <div class="card-body">
+            <input type="password" placeholder="API KEY">
+            <br>
+            <br>
+            <input type="password" placeholder="API SECRET">
+          </div>
+          <div class="card-footer text-muted">
+            <a href="#" class="btn btn-info">Test connection</a>
+          </div>
+        </div>
+        <div class="card text-center shadow-lg">
+          <div class="card-header">
+            Configuration
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4 input-control">
+                <select name="markets" class="select markets">
+                  <option selected disabled>Markets</option>
+                </select>
+              </div>
+              <div class="col-4 input-control">
+                <select name="time_frame" class="select time_frame">
+                  <option selected disabled>Time Frame</option>
+                </select>
+              </div>
+              <div class="col-4 input-control">
+                <select name="markets" class="select">
+                  <option value="Order" disabled>Order</option>
+                  <option value="limit">Limit</option>
+                  <option value="market">Market</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            <input onclick="saveConfiguration()" type="submit" value="save" class="btn btn-info">
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card text-center shadow-lg">
+          <div class="card-header">
+            Wallet
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Balance</th>
+                  <th>Amount</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="tbody_balance">
+
+              </tbody>
+            </table>
+            <div class="form-ext-control form-ext-checkbox">
+              <input id="check-amount" class="form-ext-input form-ext-input--success" type="checkbox" />
+              <label class="form-ext-label" for="check-amount">Always same Amount</label>
+            </div>
+            <div class="form-ext-control form-ext-checkbox">
+              <input id="check-candle" class="form-ext-input form-ext-input--success" type="checkbox" />
+              <label class="form-ext-label" for="check-candle">Wait finished candle</label>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            <input onclick="saveConfiguration()" type="submit" value="save" class="btn btn-info">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card text-center shadow-lg">
+      <div class="card-header">
+        Create your Strategy
+      </div>
+      <div class="card-body">
+        <div id="stepper1" class="bs-stepper">
+          <div class="bs-stepper-header">
+            <div class="row">
+              <div class="col-2">
+                <div class="step" data-target="#test-l-1">
+                  <button type="button" class="btn step-trigger">
+                    <span class="bs-stepper-circle">1</span>
+                    <span class="bs-stepper-label" style="font-size: 11px;">Side</span>
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="line"></div> -->
+              <div class="col-2">
+                <div class="step" data-target="#test-l-2">
+                  <button type="button" class="btn step-trigger">
+                    <span class="bs-stepper-circle">2</span>
+                    <span class="bs-stepper-label" style="font-size: 11px;">Indicator</span>
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="line"></div> -->
+              <div class="col-2">
+                <div class="step" data-target="#test-l-3">
+                  <button type="button" class="btn step-trigger">
+                    <span class="bs-stepper-circle">3</span>
+                    <span class="bs-stepper-label" style="font-size: 11px;">Period</span>
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="line"></div> -->
+              <div class="col-2">
+                <div class="step" data-target="#test-l-4">
+                  <button type="button" class="btn step-trigger">
+                    <span class="bs-stepper-circle">4</span>
+                    <span class="bs-stepper-label" style="font-size: 11px;">Condition</span>
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="line"></div> -->
+              <div class="col-2">
+                <div class="step" data-target="#test-l-5">
+                  <button type="button" class="btn step-trigger">
+                    <span class="bs-stepper-circle">5</span>
+                    <span class="bs-stepper-label" style="font-size: 11px;">Value</span>
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="line"></div> -->
+              <div class="col-2">
+                <div class="step" data-target="#test-l-6">
+                  <button type="button" class="btn step-trigger">
+                    <span class="bs-stepper-circle">6</span>
+                    <span class="bs-stepper-label" style="font-size: 11px;">Finish</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bs-stepper-content">
+            <div class="row">
+              <div class="col-2">
+                <div id="test-l-1" class="content">
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected disabled>Side</option>
+                    <option value="side_buy">Buy</option>
+                    <option value="side_sell">Sell</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-2">
+                <div id="test-l-2" class="content">
+                  <select class="form-select form-select-lg mb-3 indicators" aria-label=".form-select-lg example">
+                    <option selected disabled>Indicators</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-2">
+                <div id="test-l-3" class="content">
+                  <input type="number" class="">
+                </div>
+              </div>
+              <div class="col-2">
+                <div id="test-l-4" class="content">
+                  <select class="form-select form-select-lg mb-3 indicators" aria-label=".form-select-lg example">
+                    <option selected disabled>Condition</option>
+                    <option value=">">></option>
+                    <option value="<">
+                      << /option>
+                    <option value="cross_over">Cross Over</option>
+                    <option value="Cross Below">Cross Below</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-2">
+                <div id="test-l-5" class="content">
+                  <input type="number" class="">
+                </div>
+              </div>
+              <div class="col-2">
+                <div id="test-l-6" class="content">
+                  <p class="text-center color_buy_text">Finished!!!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <button class="btn btn-info" onclick="stepper1.previous()">Previous</button>
+        <button class="btn btn-info" onclick="stepper1.next()">Next</button>
+      </div>
+    </div>
+  </div>
+  <!--BUY SELL strategy-->
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="card text-center shadow-lg">
+          <div class="card-header color_buy">
+            BUY strategy
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Indicator</th>
+                  <th>Condition</th>
+                  <th>Value</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="tbody_value_strategy">
+
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer text-muted color_buy">
+            <!-- <a href="#" class="btn btn-success">Test connection</a> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card text-center shadow-lg">
+          <div class="card-header color_sell">
+            SELL strategy
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Indicator</th>
+                  <th>Condition</th>
+                  <th>Value</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="tbody_value_strategy_sell">
+
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer text-muted color_sell">
+            <!-- <a href="#" class="btn btn-success">Test connection</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col align-self-start">
+      </div>
+      <div class="col align-self-center">
+        <div class="card text-center shadow-lg">
+          <div class="card-header">
+            PROFIT
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Take Profit</th>
+                  <th>Stop Loss</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input style="width: 70px; text-align: center;" class="input-small m-11 min-content" type="number"
+                      name="" id="" placeholder="0.2">
+                  </td>
+                  <td>
+                    <input style="width: 70px; text-align: center;" class="input-small m-11 min-content" type="number"
+                      name="" id="" placeholder="0.1">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer text-muted">
+            <a href="#" class="btn btn-success">Start</a>
+            <a href="#" class="btn btn-danger">Cancel</a>
+          </div>
+        </div>
+      </div>
+      <div class="col align-self-end">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

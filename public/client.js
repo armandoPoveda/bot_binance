@@ -3,8 +3,37 @@ var socket = io.connect('http://localhost:3000');
 var chart = null;
 var lineSeries = null;
 var input_charts = [];
+var stepper1 = null;
 
-// $(function () {
+$(function () {
+    stepper1 = new Stepper(document.querySelector('#stepper1'));
+    
+//    console.log('stepper:', stepper1)
+// $('#exampleModal').modal("show");
+    // var stepper = new Stepper(document.querySelector('.bs-stepper'))
+    // console.log(stepper);
+    // var stepper1Node = document.querySelector('.bs-stepper')
+    // var stepper1 = new Stepper(document.querySelector('#stepper1'))
+
+    // stepper1Node.addEventListener('show.bs-stepper', function (event) {
+    //     console.warn('show.bs-stepper', event)
+    // })
+    // stepper1Node.addEventListener('shown.bs-stepper', function (event) {
+    //     console.warn('shown.bs-stepper', event)
+    // })
+
+    // var stepper2 = new Stepper(document.querySelector('#stepper2'), {
+    //     linear: false,
+    //     animation: true
+    // })
+    // var stepper3 = new Stepper(document.querySelector('#stepper3'), {
+    //     animation: true
+    // })
+    // var stepper4 = new Stepper(document.querySelector('#stepper4'))
+    // import Stepper from 'bs-stepper'
+
+    // var stepper = new Stepper(document.querySelector('.bs-stepper'))
+
 //     chart = LightweightCharts.createChart(document.body, { width: 900, height: 600, localization: {
 //         locale: 'eu-EU',
 //     }, });
@@ -36,10 +65,30 @@ var input_charts = [];
 //         // data.time = Math.floor(Date.now() / 1000 | 0);
 //         lineSeries.update(data);
 //     })
-// })
+})
 
-
-
+function stepperNext() {
+    stepper1.next();
+    console.log($('.side').val());
+    if ($('.side').val() != null) {
+        $('#span_value_side').html($('.side').val());   
+    }
+    if ($('#indicator_stepper').val() != null) {
+        $('#span_value_indicator').html($('#indicator_stepper').val());   
+    }
+}
+function stepperPrevious() {
+    stepper1.previous();
+    $('#span_value_side').html('');
+}
+// function showModal() {
+//     console.log('show Modal')
+//     $('#modal').modal("show");
+// }
+// // function nextStep() {
+  
+// }
+// stepper1.next();
 // var sidenav = null;
 
 // $(function () {
@@ -78,7 +127,7 @@ var input_charts = [];
 // })
 
 // })
-// $('.stepper').mdbStepper();
+
 socket.on('list_indicators', function (data) {
     console.log('list_indicators: ', data);
     var select = $(".indicators");

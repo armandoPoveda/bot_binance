@@ -169,7 +169,7 @@
 }
 
 .color_buy {
-    background: #0dd157;
+    background: #0dd157 !important;
 }
 
 .color_sell {
@@ -183,5 +183,6 @@
 .color_sell_text {
     color: #FF0000;
 }
+
 
 
