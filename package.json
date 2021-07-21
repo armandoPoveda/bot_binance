@@ -8,6 +8,7 @@
     "bs-stepper": "^1.7.0",
     "ccxt": "^1.52.5",
     "cirrus-ui": "^0.6.2",
+    "cors": "^2.8.5",
     "date-format": "^3.0.0",
     "dateformat": "^4.5.1",
     "express": "^4.17.1",
@@ -27,8 +28,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "start",
-    "start": "node index.js"
+    "test": "start"
   },
   "author": "",
   "license": "ISC",

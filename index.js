@@ -3,6 +3,7 @@ console.log('index.js');
 // exprress, io, http
 var express = require('express');
 var http = require('http');
+var cors = require('cors');
 var app = express();
 var server = http.createServer(app);
 var io = require('socket.io')(server);
@@ -20,6 +21,8 @@ if (typeof localStorage === "undefined" || localStorage === null) {
     var LocalStorage = require('node-localstorage').LocalStorage;
     localStorage = new LocalStorage('./scratch');
 }
+
+app.use(cors());
 
 app.use(express.static('public'));
 
