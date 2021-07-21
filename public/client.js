@@ -1,5 +1,5 @@
 console.log("client.js");
-var socket = io.connect('https://bot-binance-sigma.vercel.app/');
+var socket = io.connect('https://localhost:3000');
 var chart = null;
 var lineSeries = null;
 var input_charts = [];

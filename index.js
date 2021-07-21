@@ -5,12 +5,7 @@ var express = require('express');
 var http = require('http');
 var app = express();
 var server = http.createServer(app);
-var io = require('socket.io')(server, {
-    cors: {
-      origin: "https://bot-binance-sigma.vercel.app/",
-      methods: ["GET", "POST"]
-    }
-  });
+var io = require('socket.io')(server);
 
 //connect
 const connect = require('./connect/connect.js');
