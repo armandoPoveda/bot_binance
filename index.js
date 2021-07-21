@@ -6,7 +6,11 @@ var http = require('http');
 var cors = require('cors');
 var app = express();
 var server = http.createServer(app);
-var io = require('socket.io')(server);
+var io = require('socket.io')(server, {
+    cors: {
+      origin: 'https://bot-binance-sigma.vercel.app/',
+    }
+  });
 
 //connect
 const connect = require('./connect/connect.js');
