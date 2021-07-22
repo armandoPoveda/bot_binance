@@ -2,15 +2,13 @@ console.log('index.js');
 
 // exprress, io, http
 var express = require('express');
-var http = require('http');
-var cors = require('cors');
+// var cors = require('cors')
+
 var app = express();
+var http = require('http');
 var server = http.createServer(app);
 var io = require('socket.io')(server);
-  var corsOptions = {
-    origin: 'https://bot-binance-sigma.vercel.app/',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
+
 //connect
 const connect = require('./connect/connect.js');
 
@@ -25,7 +23,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
     localStorage = new LocalStorage('./scratch');
 }
 
-app.use(cors());
+// app.use(cors());
 
 app.use(express.static('public'));
 
@@ -33,7 +31,7 @@ app.use(express.static('public'));
 //     res.sendFile(__dirname + '/index.html');
 // });
 
-server.listen(80, function () {
+server.listen(3000, function () {
     console.log('HTTP server started on port 3000');
 });
 
@@ -313,17 +311,17 @@ connect.binance.websockets.candlesticks(['BNBUSDT'], "1m", (candlesticks) => {
     // date.replace(':', '-');
     // console.log(date.replace(/:/g, '-'));
     // connect.binance.useServerTime().then(function(resolve) {
-        // console.log(resolve.serverTime);
-        algo.time = Math.floor(Date.now() / 1000);
-        algo.value = close;
-        // console.log(dateformat(algo.time));
-        // input_charts.push(algo);
-        // console.log(dateformat( resolve.serverTime));
-        console.log('algo: ', algo)
-        io.emit('chart', algo);
+    // console.log(resolve.serverTime);
+    algo.time = Math.floor(Date.now() / 1000);
+    algo.value = close;
+    // console.log(dateformat(algo.time));
+    // input_charts.push(algo);
+    // console.log(dateformat( resolve.serverTime));
+    console.log('algo: ', algo)
+    io.emit('chart', algo);
     // });
 
-   
+
 });
 
 
