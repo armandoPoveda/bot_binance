@@ -1,7 +1,7 @@
 console.log("client.js");
 // var express = require('express');
 
-var socket = io.connect();
+var socket = io();
 var chart = null;
 var lineSeries = null;
 var input_charts = [];
@@ -9,7 +9,7 @@ var stepper1 = null;
 
 $(function () {
     stepper1 = new Stepper(document.querySelector('#stepper1'));
-    
+   
 //    console.log('stepper:', stepper1)
 // $('#exampleModal').modal("show");
     // var stepper = new Stepper(document.querySelector('.bs-stepper'))
@@ -83,6 +83,7 @@ function stepperPrevious() {
     stepper1.previous();
     $('#span_value_side').html('');
 }
+
 // function showModal() {
 //     console.log('show Modal')
 //     $('#modal').modal("show");
