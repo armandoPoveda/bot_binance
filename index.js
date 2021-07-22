@@ -6,12 +6,11 @@ var http = require('http');
 var cors = require('cors');
 var app = express();
 var server = http.createServer(app);
-var io = require('socket.io')(server, {
-    cors: {
-      origin: 'https://bot-binance-sigma.vercel.app/',
-    }
-  });
-
+var io = require('socket.io')(server);
+  var corsOptions = {
+    origin: 'https://bot-binance-sigma.vercel.app/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 //connect
 const connect = require('./connect/connect.js');
 
@@ -34,7 +33,7 @@ app.use(express.static('public'));
 //     res.sendFile(__dirname + '/index.html');
 // });
 
-server.listen(3000, function () {
+server.listen(80, function () {
     console.log('HTTP server started on port 3000');
 });
 
