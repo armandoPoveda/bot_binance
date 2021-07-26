@@ -3,7 +3,8 @@
 
 <head>
     <title>ScalpingTrading</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" /> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
     <meta charset="UTF-8" />
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge;" /> -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -602,34 +603,41 @@
             </div>
         </main>
     </div>
-    <div class="modal" id="myModal">
-        <div style="margin-top: 2%;" class="row text-center">
+
+    <div class="container">
+        <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <div class="modal" id="myModal">
+                    <div style="margin-top: 2%;" class="row text-center">
+                        <div class="col">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <div id="tradingview_03869">
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                {
+                                    "width": 900,
+                                    "height": 610,
+                                    "symbol": "BINANCE:BTCUSDT",
+                                    "interval": "D",
+                                    "timezone": "Etc/UTC",
+                                    "theme": "light",
+                                    "style": "1",
+                                    "locale": "es",
+                                    "toolbar_bg": "#f1f3f6",
+                                    "enable_publishing": false,
+                                    "allow_symbol_change": true,
+                                    "studies": [
+                                        "RSI@tv-basicstudies"
+                                    ],
+                                    "container_id": "tradingview_03869"
+                                }
+                            );
+                        </script>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="tradingview_03869">
-            <script type="text/javascript">
-                new TradingView.widget(
-                    {
-                        "width": 980,
-                        "height": 610,
-                        "symbol": "BINANCE:BTCUSDT",
-                        "interval": "D",
-                        "timezone": "Etc/UTC",
-                        "theme": "light",
-                        "style": "1",
-                        "locale": "en",
-                        "toolbar_bg": "#f1f3f6",
-                        "enable_publishing": false,
-                        "allow_symbol_change": true,
-                        "studies": [
-                            "RSI@tv-basicstudies"
-                        ],
-                        "container_id": "tradingview_03869"
-                    }
-                );
-            </script>
         </div>
     </div>
 </body>

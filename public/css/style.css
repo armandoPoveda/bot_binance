@@ -195,6 +195,10 @@ input[type="number"] {
   width: 70px;
 }
 
-.bs-stepper-circle{
+.bs-stepper-circle {
   border-radius: 50% !important;
+}
+
+#tradingview_03869 {
+ overflow: scroll;
 }

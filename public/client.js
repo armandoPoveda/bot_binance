@@ -417,6 +417,31 @@ function ema() {
 //     socket.emit('period_ema_3', $('#period_ema_3').val());
 // }
 
+$(window).on('resize', function() {
+    // This will execute whenever the window is resized
+    console.log($(window).height()); // New height
+    console.log($(window).width()); // New width
+    // new TradingView.widget(
+    //     {
+    //         "width": $(window).width(),
+    //         "height": $(window).height(),
+    //         "symbol": "BINANCE:BTCUSDT",
+    //         "interval": "D",
+    //         "timezone": "Etc/UTC",
+    //         "theme": "light",
+    //         "style": "1",
+    //         "locale": "es",
+    //         "toolbar_bg": "#f1f3f6",
+    //         "enable_publishing": false,
+    //         "allow_symbol_change": true,
+    //         "studies": [
+    //             "RSI@tv-basicstudies"
+    //         ],
+    //         "container_id": "tradingview_03869"
+    //     }
+    // );
+  });
+
 function sar() {
     var period1 = $('#period_sar_1').val();
     var period2 = $('#period_sar_2').val();
