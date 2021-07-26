@@ -9,7 +9,9 @@ var stepper1 = null;
 
 $(function () {
     stepper1 = new Stepper(document.querySelector('#stepper1'));
+
    
+    // $('#myModal').css("display", "none");
 //    console.log('stepper:', stepper1)
 // $('#exampleModal').modal("show");
     // var stepper = new Stepper(document.querySelector('.bs-stepper'))
@@ -142,7 +144,6 @@ socket.on('list_indicators', function (data) {
     });
 });
 
-
 socket.on('timeframes', function (data) {
     console.log('timeframes: ', data);
     var select = $(".time_frame");
@@ -158,15 +159,16 @@ socket.on('timeframes', function (data) {
 socket.on('balance', function (data) {
     console.log('balance....: ', data);
     console.log($(".tbody_balance"))
+    $(".tbody_balance").empty();
     for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
             // var option = new Option(key, data[key]);
             if (key === 'USDT' || key === 'BNB' || key === 'BTC' || key === 'ETH') {
                 var tr = $('<tr />');
-                var th = $("<td />");
+                var th = $("<th />");
                 var td = $("<td />");
-                var td_input_amount = $('<td><input oninput="inputAmount(this.value)" id="' + key + '" disabled class="min-content input-small" placeholder="' + key + '" type="number"></input></td>');
-                var td_input = $('<td><label>' + '<input value="' + key + '" oninput="checkBoxConfiguration(this.value)" id="check_' + key + '" type="radio" name="house"/></label></td>');
+                var td_input_amount = $('<td scope="col"><input oninput="inputAmount(this.value)" id="' + key + '" disabled class=" placeholder="' + key + '" type="number"></input></td>');
+                var td_input = $('<td scope="col">' + '<input value="' + key + '" oninput="checkBoxConfiguration(this.value)" id="check_' + key + '" type="radio" name="house"/></td>');
                 th.html(key);
                 td.html(data[key]);
                 tr.append(th);
@@ -182,6 +184,7 @@ socket.on('balance', function (data) {
     $('#USDT').removeAttr("disabled");
     $('#check_USDT').attr('checked', 'checked');
 });
+
 
 
 var usdt = [];
