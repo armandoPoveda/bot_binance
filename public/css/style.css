@@ -192,8 +192,12 @@ input[type="text"] {
 }
 
 input[type="number"] {
-  width: 70px;
+  width: 90px;
 }
+
+/* .select.markets{
+  width: 77px;
+} */
 
 .bs-stepper-circle {
   border-radius: 50% !important;
@@ -202,3 +206,16 @@ input[type="number"] {
 #tradingview_03869 {
  overflow: scroll;
 }
+
+#tradingview_03870 {
+  overflow: scroll;
+ }
+
+ main{
+  background: rgb(177,173,173);
+background: linear-gradient(90deg, rgba(177,173,173,1) 0%, rgba(203,203,203,1) 0%, rgba(255,255,255,1) 100%);
+ }
+
+ .card{
+margin: 5px;;
+ }

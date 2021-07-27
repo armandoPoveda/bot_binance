@@ -3,6 +3,7 @@ console.log('index.js');
 // exprress, io, http
 var express = require('express');
 // var cors = require('cors')
+var ccxt = require('ccxt')
 
 var app = express();
 var http = require('http');
@@ -11,12 +12,14 @@ var io = require('socket.io')(server);
 
 //connect
 const connect = require('./connect/connect.js');
-
+// console.log (connect.cctx_exchange.requiredCredentials)
+// console.log(connect.cctx_exchange.checkRequiredCredentials());
 // indicators
 var indicators = require('./indicators/technical/technical.js');
 var tulind = require('./indicators/tulind/tulind.js');
 
 const dateformat = require('dateformat');
+const { resolve } = require('path');
 
 if (typeof localStorage === "undefined" || localStorage === null) {
     var LocalStorage = require('node-localstorage').LocalStorage;
@@ -62,11 +65,6 @@ io.on('connection', function (socket) {
         socket.emit('markets', Object.keys(resolve));
     })
 
-    connect.cctx_exchange.fetchBalance().then(function (resolve) {
-        // console.log(resolve);
-        socket.emit('balance', resolve.free);
-    })
-
     socket.on('period_ema', function (data) {
         if (data[0] !== '') {
             period_ema_1 = data[0];
@@ -95,37 +93,59 @@ io.on('connection', function (socket) {
         // console.log(data);
     });
 
-    setInterval(() => {
-        var now = new Date();
-        var format_time = new Date(now + 1000);
-        socket.emit('time', dateformat(format_time));
-    }, 500);
+    // setInterval(() => {
+    //     var now = new Date();
+    //     var format_time = new Date(now + 1000);
+    //     socket.emit('time', dateformat(format_time));
+    // }, 500);
 
     socket.on('data_user', function (data) {
-        console.log('user data: ', data);
-        localStorage.setItem('key', data[0]);
-        localStorage.setItem('secret', data[1]);
-        console.log(localStorage.getItem('key'));
-        console.log(localStorage.getItem('secret'));
-    })
+        var cctx_exchange = new ccxt.binance({
+            'apiKey': data[0],
+            'secret': data[1],
+        });
+        cctx_exchange.fetchBalance().then(function (resolve) {
+            localStorage.setItem('key');
+            localStorage.setItem('secret');
+            socket.emit('balance', resolve.free);
+        }).catch(function (e) {
+            console.log('error: ', e);
+            var error = 'Incorrect API KEY';
+            socket.emit('error_api', error);
+        });
+    });
 
+    socket.on('amount', function(data) {
+        console.log('amount in server: ', data);
+    });
+
+    socket.on('configuration', function(data) {
+        console.log('configuration', data);
+    });
 
     let input = {
         values: [],
         period: 14
     }
 
-    // //WEBSOCKETS CHARTS (send data client indicators values)
-    connect.binance.websockets.chart("BNBUSDT", "1m", (symbol, interval, chart) => {
-        console.log('web web web')
-        input.values = []
-        let ohlc = connect.binance.ohlc(chart);
-        input.values = ohlc.close;
-        var rsi = indicators.rsi(input);
-        console.log('rsi: ', rsi);
-        socket.emit('send_rsi', rsi);
-    });
+    var input_close = [];
+    var input_open = [];
+    var input_high = [];
+    var input_low = [];
+    var input_volume = [];
 
+    connect.cctx_exchange.fetchOHLCV("BNB/USDT", "1m").then(function(resolve) {
+        // console.log('resolve: ', resolve);
+        resolve.forEach(element => {
+            input_open.push(element[1]);
+            input_high.push(element[2]);
+            input_low.push(element[3]);
+            input_close.push(element[4]);
+            input_volume.push(element[5]);
+        })
+        // console.log(input_close)
+    })
+   
     // let serverTime = []
     // let open = []
     // let high = []
@@ -277,20 +297,24 @@ io.on('connection', function (socket) {
         // console.log(obj_candles.close)
         // if(algo === true){
 
-        // if (isFinal === true) {
-        //     // console.log('isFinal: ', isFinal)
-        //     obj_candles.close.shift();
-        //     input.values.shift();
-        //     obj_candles.close.push(close);
-        //     input.values.push(close);
-        // } else {
-        //     // console.log('isFinal: ', isFinal)
-        //     obj_candles.close.pop();
-        //     input.values.pop();
-        //     obj_candles.close.push(close);
-        //     input.values.push(close);
-        // }
-
+        if (isFinal === true) {
+            // console.log('isFinal: ', isFinal)
+            // obj_candles.close.shift();
+            input_close.shift();
+            // obj_candles.close.push(close);
+           input_close.push(close);
+        } else {
+            // console.log('isFinal: ', isFinal)
+            // obj_candles.close.pop();
+            input_close.pop();
+            // obj_candles.close.push(close);
+            input_close.push(close);
+        }
+        // console.log(input_close)
+        var rsi = tulind.rsi(input_close);
+        console.log('rsi: ', rsi);
+        socket.emit('send_rsi', rsi);
+        
         // input.values = obj_candles.close;
         // var rsi = indicators.rsi(input);
         // console.log(rsi);

@@ -10,10 +10,10 @@ var stepper1 = null;
 $(function () {
     stepper1 = new Stepper(document.querySelector('#stepper1'));
 
-   
+
     // $('#myModal').css("display", "none");
-//    console.log('stepper:', stepper1)
-// $('#exampleModal').modal("show");
+    //    console.log('stepper:', stepper1)
+    // $('#exampleModal').modal("show");
     // var stepper = new Stepper(document.querySelector('.bs-stepper'))
     // console.log(stepper);
     // var stepper1Node = document.querySelector('.bs-stepper')
@@ -38,52 +38,53 @@ $(function () {
 
     // var stepper = new Stepper(document.querySelector('.bs-stepper'))
 
-//     chart = LightweightCharts.createChart(document.body, { width: 900, height: 600, localization: {
-//         locale: 'eu-EU',
-//     }, });
- 
+    //     chart = LightweightCharts.createChart(document.body, { width: 900, height: 600, localization: {
+    //         locale: 'eu-EU',
+    //     }, });
 
-//     lineSeries = chart.addLineSeries();
-//     chart.applyOptions({
-//         timeScale: {
-//             // rightOffset: 12,
-//             // barSpacing: 3,
-//             // fixLeftEdge: true,
-//             // lockVisibleTimeRangeOnResize: true,
-//             // rightBarStaysOnScroll: true,
-//             // borderVisible: false,
-//             // borderColor: '#fff000',
-//             visible: true,
-//             timeVisible: true,
-//             secondsVisible: true,
-//             tickMarkType: true,
-//             // tickMarkFormatter: (time, tickMarkType, locale) => {
-//             //     console.log('...............', time, tickMarkType, locale);
-//             //     const year = LightweightCharts.isBusinessDay(time) ? time.year : new Date(time * 1000).getUTCFullYear();
-//             //     return String(year);
-//             // },
-//         }
-//     });
-//     socket.on('chart', function (data) {
-//         console.log('chart: ', data);
-//         // data.time = Math.floor(Date.now() / 1000 | 0);
-//         lineSeries.update(data);
-//     })
+
+    //     lineSeries = chart.addLineSeries();
+    //     chart.applyOptions({
+    //         timeScale: {
+    //             // rightOffset: 12,
+    //             // barSpacing: 3,
+    //             // fixLeftEdge: true,
+    //             // lockVisibleTimeRangeOnResize: true,
+    //             // rightBarStaysOnScroll: true,
+    //             // borderVisible: false,
+    //             // borderColor: '#fff000',
+    //             visible: true,
+    //             timeVisible: true,
+    //             secondsVisible: true,
+    //             tickMarkType: true,
+    //             // tickMarkFormatter: (time, tickMarkType, locale) => {
+    //             //     console.log('...............', time, tickMarkType, locale);
+    //             //     const year = LightweightCharts.isBusinessDay(time) ? time.year : new Date(time * 1000).getUTCFullYear();
+    //             //     return String(year);
+    //             // },
+    //         }
+    //     });
+    //     socket.on('chart', function (data) {
+    //         console.log('chart: ', data);
+    //         // data.time = Math.floor(Date.now() / 1000 | 0);
+    //         lineSeries.update(data);
+    //     })
 })
 
 function stepperNext() {
     stepper1.next();
     console.log($('.side').val());
     if ($('.side').val() != null) {
-        $('#span_value_side').html($('.side').val());   
+        $('#span_value_side').html($('.side').val());
     }
     if ($('#indicator_stepper').val() != null) {
-        $('#span_value_indicator').html($('#indicator_stepper').val());   
+        $('#span_value_indicator').html($('#indicator_stepper').val());
     }
 }
 function stepperPrevious() {
     stepper1.previous();
     $('#span_value_side').html('');
+    $('#span_value_indicator').html('');
 }
 
 // function showModal() {
@@ -91,7 +92,7 @@ function stepperPrevious() {
 //     $('#modal').modal("show");
 // }
 // // function nextStep() {
-  
+
 // }
 // stepper1.next();
 // var sidenav = null;
@@ -163,26 +164,31 @@ socket.on('balance', function (data) {
     for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
             // var option = new Option(key, data[key]);
-            if (key === 'USDT' || key === 'BNB' || key === 'BTC' || key === 'ETH') {
+            // if (key === 'USDT' || key === 'BNB' || key === 'BTC' || key === 'ETH') {
+            if (key === 'USDT') {
                 var tr = $('<tr />');
                 var th = $("<th />");
                 var td = $("<td />");
-                var td_input_amount = $('<td scope="col"><input oninput="inputAmount(this.value)" id="' + key + '" disabled class=" placeholder="' + key + '" type="number"></input></td>');
-                var td_input = $('<td scope="col">' + '<input value="' + key + '" oninput="checkBoxConfiguration(this.value)" id="check_' + key + '" type="radio" name="house"/></td>');
+                var td_input_amount = $('<td><input id="input_amount" class=" placeholder="' + key + '" type="number"></input></td>');
+                // var td_input = $('<td scope="col">' + '<input value="' + key + '" oninput="checkBoxConfiguration(this.value)" id="check_' + key + '" type="radio" name="house"/></td>');
                 th.html(key);
                 td.html(data[key]);
                 tr.append(th);
                 tr.append(td);
                 tr.append(td_input_amount);
-                tr.append(td_input);
+                // tr.append(td_input);
                 // console.log(tr)
                 $(".tbody_balance").append(tr);
             }
         }
         $('#USDT').val(data[key]);
+        $('.test_connection').css('pointer-events', 'none');
+        $('.test_connection').css('cursor', 'default');
+        // alert('CONGRATULATIONS!!!');
     }
-    $('#USDT').removeAttr("disabled");
-    $('#check_USDT').attr('checked', 'checked');
+    // socket.close();
+    // $('#USDT').removeAttr("disabled");
+    // $('#check_USDT').attr('checked', 'checked');
 });
 
 
@@ -283,11 +289,25 @@ function checkBoxConfiguration(value) {
         // $('.markets').empty();
     }
 }
-
-var amount = 0;
-function inputAmount(value) {
-    amount = value;
+var amount = null;
+var alwais_same_amount = false;
+function saveAmount() {
+    // console.log($('#input_amount').val());
+    if ($('#input_amount').val() !== '') {
+        console.log($('#input_amount').val());
+        amount = $('#input_amount').val();
+    } else {
+        alert('enter an amount')
+    }
+    alwais_same_amount = $('#check-amount').is(":checked");
+    socket.emit('amount', {amount, alwais_same_amount})
 }
+
+// var amount = 0;
+// function inputAmount(value) {
+//     amount = value;
+//     console.log(amount);
+// }
 // console.log($('#check_BTC'))
 // if ($('#check_BTC').is(":checked")) {
 //     console.log('check')
@@ -344,10 +364,16 @@ $('.time_frame').on('change', function () {
 });
 
 function saveConfiguration() {
-    console.log('saveConfiguration');
-    console.log(amount);
-    console.log($('select[name=time_frame] option').filter(':selected').val());
-    console.log($('select[name=markets] option').filter(':selected').val());
+    // console.log('saveConfiguration');
+    // console.log($('select[name=time_frame] option').filter(':selected').val());
+    // console.log($('select[name=markets] option').filter(':selected').val());
+    // console.log($('select[name=order] option').filter(':selected').val());
+    // console.log($('#check-candle').is(":checked"));
+    var candle = $('select[name=time_frame] option').filter(':selected').val();
+    var market = $('select[name=markets] option').filter(':selected').val();
+    var order = $('select[name=order] option').filter(':selected').val();
+    var wait_finish_candle = $('#check-candle').is(":checked");
+    socket.emit('configuration', {candle, market, order, wait_finish_candle});
     // console.log($('.time_frame').filter(':selected').val());
     // console.log($('.markets').filter(':selected').val());
 }
@@ -417,7 +443,7 @@ function ema() {
 //     socket.emit('period_ema_3', $('#period_ema_3').val());
 // }
 
-$(window).on('resize', function() {
+$(window).on('resize', function () {
     // This will execute whenever the window is resized
     console.log($(window).height()); // New height
     console.log($(window).width()); // New width
@@ -440,7 +466,7 @@ $(window).on('resize', function() {
     //         "container_id": "tradingview_03869"
     //     }
     // );
-  });
+});
 
 function sar() {
     var period1 = $('#period_sar_1').val();
@@ -475,10 +501,18 @@ function saveDataUser() {
     var key = $('.key').val();
     console.log('key:', key)
     var secret = $('.secret').val();
-    data_user.push(key);
-    data_user.push(secret);
-    console.log(data_user);
-    socket.emit('data_user', data_user);
+    if (key !== '' && secret !== '') {
+        data_user.push(key);
+        data_user.push(secret);
+        console.log(data_user);
+        socket.emit('data_user', data_user);
+    } else {
+        console.log('error key is empty');
+        alert('error key is empty');
+    }
 }
 
-// move elements
+socket.on('error_api', function (data) {
+    console.log('error api: ', data);
+    alert('invalid api key');
+})

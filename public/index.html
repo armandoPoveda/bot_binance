@@ -45,7 +45,7 @@
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-                    <a href="#">pro sidebar</a>
+                    <a href="#">Binance Bot</a>
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
                     </div>
@@ -57,8 +57,8 @@
                             alt="User picture">
                     </div>
                     <div class="user-info">
-                        <span class="user-name">Jhon
-                            <strong>Smith</strong>
+                        <span class="user-name">Jarman
+                            <strong>Flip</strong>
                         </span>
                         <span class="user-role">Administrator</span>
                         <span class="user-status">
@@ -242,62 +242,22 @@
         <main class="page-content">
 
             <div class="container">
-
                 <div class="row">
                     <div class="col">
-                        <div class="row ">
-                            <div class="col-12">
-                                <div class="card text-center shadow-lg">
-                                    <div class="card-header">
-                                        API
-                                    </div>
-                                    <div class="card-body">
-                                        <input type="password" placeholder="API KEY">
-                                        <br>
-                                        <br>
-                                        <input type="password" placeholder="API SECRET">
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        <a href="#" class="btn btn-info test_conecction">Test connection</a>
-                                    </div>
-                                </div>
+                        <div class="card text-center shadow-lg">
+                            <div class="card-header">
+                                API
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card text-center shadow-lg">
-                                    <div class="card-header">
-                                        Configuration
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col input-control">
-                                                <select name="markets" class="select markets">
-                                                    <option selected disabled>Markets</option>
-                                                </select>
-                                            </div>
-                                            <div class="col input-control">
-                                                <select name="time_frame" class="select time_frame">
-                                                    <option selected disabled>Time Frame</option>
-                                                </select>
-                                            </div>
-                                            <div class="col input-control">
-                                                <select name="markets" class="select">
-                                                    <option selected disabled>Order</option>
-                                                    <option value="limit">Limit</option>
-                                                    <option value="market">Market</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        <input onclick="saveConfiguration()" type="submit" value="save"
-                                            class="btn btn-info">
-                                    </div>
-                                </div>
+                            <div class="card-body">
+                                <input type="password" class="key" placeholder="API KEY">
+                                <!-- <br>
+                                <br> -->
+                                <input type="password" class="secret" placeholder="API SECRET">
                             </div>
-
+                            <div class="card-footer">
+                                <a href="#" class="btn btn-info test_connection" onclick="saveDataUser()">Test
+                                    connection</a>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
@@ -309,58 +269,71 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Balance</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">Select</th>
+                                            <th>Name</th>
+                                            <th>Balance</th>
+                                            <th>Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody class="tbody_balance">
                                         <tr>
-                                            <th>BTC</th>
-                                            <td>5</td>
-                                            <td><input type="number" name="" id=""></td>
-                                            <td><input type="radio" name="" id=""></td>
-                                        </tr>
-                                        <tr>
-                                            <th>ETH</th>
-                                            <td>15</td>
-                                            <td><input type="number" name="" id=""></td>
-                                            <td><input type="radio" name="" id=""></td>
-                                        </tr>
-                                        <tr>
-                                            <th>BNB</th>
-                                            <td>100</td>
-                                            <td><input type="number" name="" id=""></td>
-                                            <td><input type="radio" name="" id=""></td>
-                                        </tr>
-                                        <tr>
                                             <th>USDT</th>
-                                            <td>1500</td>
-                                            <td><input type="number" name="" id=""></td>
-                                            <td><input type="radio" name="" id=""></td>
+                                            <td>0</td>
+                                            <td><input type="number" placeholder="Min 15$" name="" id="input_amount">
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
+
+                            </div>
+                            <div class="card-footer">
                                 <div class="form-ext-control form-ext-checkbox">
                                     <input id="check-amount" class="form-ext-input form-ext-input--success"
                                         type="checkbox" />
                                     <label class="form-ext-label" for="check-amount">Always same Amount</label>
                                 </div>
+                                <input onclick="saveAmount()" type="submit" value="save" class="btn btn-info">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card text-center shadow-lg">
+                            <div class="card-header">
+                                Configuration
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col input-control">
+                                        <select name="markets" class="select markets">
+                                            <option selected disabled>Markets</option>
+                                        </select>
+                                    </div>
+                                    <div class="col input-control">
+                                        <select name="time_frame" class="select time_frame">
+                                            <option selected disabled>Time</option>
+                                        </select>
+                                    </div>
+                                    <div class="col input-control">
+                                        <select name="order" class="select">
+                                            <option selected disabled>Order</option>
+                                            <option value="limit">Limit</option>
+                                            <option value="market">Market</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
                                 <div class="form-ext-control form-ext-checkbox">
                                     <input id="check-candle" class="form-ext-input form-ext-input--success"
                                         type="checkbox" />
                                     <label class="form-ext-label" for="check-candle">Wait finished candle</label>
                                 </div>
-                            </div>
-                            <div class="card-footer text-muted">
                                 <input onclick="saveConfiguration()" type="submit" value="save" class="btn btn-info">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col">
                         <div class="card text-center shadow-lg">
@@ -378,6 +351,7 @@
                                                 <span class="bs-stepper-label">Side</span>
                                                 <!-- </button> -->
                                             </div>
+                                            <br>
                                             <div id="test-l-1" class="content">
                                                 <select class="form-select form-select-lg mb-3 side"
                                                     aria-label=".form-select-lg example">
@@ -396,6 +370,7 @@
                                                 <span class="bs-stepper-label">Indicator</span>
                                                 <!-- </button> -->
                                             </div>
+                                            <br>
                                             <div id="test-l-2" class="content">
                                                 <select id="indicator_stepper"
                                                     class="form-select form-select-lg mb-3 indicators"
@@ -413,6 +388,7 @@
                                                 <span class="bs-stepper-label">Period</span>
                                                 </button>
                                             </div>
+                                            <br>
                                             <div id="test-l-3" class="content">
                                                 <input type="number" class="">
                                             </div>
@@ -428,6 +404,7 @@
                                                 <span class="bs-stepper-label">Condition</span>
                                                 <!-- </button> -->
                                             </div>
+                                            <br>
                                             <div id="test-l-4" class="content">
                                                 <select class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
@@ -448,6 +425,7 @@
                                                 <span class="bs-stepper-label">Value</span>
                                                 <!-- </button> -->
                                             </div>
+                                            <br>
                                             <div id="test-l-5" class="content">
                                                 <input type="number" class="">
                                             </div>
@@ -460,6 +438,7 @@
                                                 <span class="bs-stepper-label">Finish</span>
                                                 </button>
                                             </div>
+                                            <br>
                                             <div id="test-l-6" class="content">
                                                 <p class="text-center color_buy_text">Finished!!!</p>
                                             </div>
@@ -471,48 +450,57 @@
                                     <!-- </div> -->
                                 </div>
                             </div>
-                            <div class="card-footer text-muted">
+                            <div class="card-footer">
                                 <button class="btn btn-info" onclick="stepperPrevious()">Previous</button>
                                 <button class="btn btn-info" onclick="stepperNext()">Next</button>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card text-center shadow-lg">
-                            <div class="card-header">
-                                Indicators
-                            </div>
-                            <div class="card-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Period</th>
-                                            <th scope="col">Value</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="tbody_indicators">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="card-footer text-muted">
-                            </div>
+                        <div id="tradingview_03870">
+                            <!-- <a href="https://es.tradingview.com/chart/J8hnV9UB/" rel="noopener" target="_blank"><span
+                                class="blue-text">BTC Gráfico</span></a> -->
+                            <script type="text/javascript">
+                                new TradingView.widget(
+                                    {
+                                        "width": 700,
+                                        "height": 400,
+                                        "symbol": "BINANCE:BTCUSDT",
+                                        "interval": "D",
+                                        "timezone": "Etc/UTC",
+                                        "theme": "light",
+                                        "style": "1",
+                                        "locale": "es",
+                                        "toolbar_bg": "#f1f3f6",
+                                        "enable_publishing": false,
+                                        "allow_symbol_change": true,
+                                        "studies": [
+                                            "RSI@tv-basicstudies"
+                                        ],
+                                        "container_id": "tradingview_03870"
+                                    }
+                                );
+                            </script>
                         </div>
+
                     </div>
                 </div>
-
             </div>
             <!--BUY SELL strategy-->
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div class="card text-center shadow-lg">
-                            <div class="card-header color_buy">
+                            <div class="card-header">
                                 BUY strategy
                             </div>
-                            <div class="card-body">
-                                <table class="table">
+                            <div class="card-body color_buy">
+                                <div class="form-floating">
+                                    <textarea disabled class="form-control" placeholder="BUY strategy"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <!-- <label for="floatingTextarea2">Comments</label> -->
+                                </div>
+                                <!-- <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Indicator</th>
@@ -524,20 +512,25 @@
                                     <tbody class="tbody_value_strategy">
 
                                     </tbody>
-                                </table>
+                                </table> -->
                             </div>
-                            <div class="card-footer text-muted color_buy">
+                            <div class="card-footer">
                                 <!-- <a href="#" class="btn btn-success">Test connection</a> -->
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card text-center shadow-lg">
-                            <div class="card-header color_sell">
+                            <div class="card-header">
                                 SELL strategy
                             </div>
-                            <div class="card-body">
-                                <table class="table">
+                            <div class="card-body color_sell">
+                                <div class="form-floating">
+                                    <textarea disabled class="form-control" placeholder="SELL strategy"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <!-- <label for="floatingTextarea2">Comments</label> -->
+                                </div>
+                                <!-- <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Indicator</th>
@@ -549,20 +542,14 @@
                                     <tbody class="tbody_value_strategy_sell">
 
                                     </tbody>
-                                </table>
+                                </table> -->
                             </div>
-                            <div class="card-footer text-muted color_sell">
+                            <div class="card-footer">
                                 <!-- <a href="#" class="btn btn-success">Test connection</a> -->
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col align-self-start">
-                    </div>
-                    <div class="col align-self-center">
+                    <div class="col">
                         <div class="card text-center shadow-lg">
                             <div class="card-header">
                                 PROFIT
@@ -591,20 +578,16 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="card-footer text-muted">
+                            <div class="card-footer">
                                 <a href="#" class="btn btn-success">Start</a>
                                 <a href="#" class="btn btn-danger">Cancel</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col align-self-end">
-                    </div>
                 </div>
             </div>
         </main>
     </div>
-
-
     <div class="modal" id="myModal">
         <div style="margin-top: 2%;" class="row text-center">
             <div class="col">
