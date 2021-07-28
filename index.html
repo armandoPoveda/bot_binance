@@ -396,8 +396,9 @@
                                             </div>
                                             <br>
                                             <div id="test-l-3" class="content">
-                                                <input type="number" class="">
+                                                <input type="number" class="input_period">
                                             </div>
+                                            <span id="span_value_period"></span>
                                         </div>
                                     </div>
                                     <br>
@@ -412,16 +413,16 @@
                                             </div>
                                             <br>
                                             <div id="test-l-4" class="content">
-                                                <select class="form-select form-select-lg mb-3"
+                                                <select class="form-select form-select-lg mb-3 condition"
                                                     aria-label=".form-select-lg example">
                                                     <option selected disabled>Condition</option>
                                                     <option value=">">></option>
-                                                    <option value="<">
-                                                        << /option>
+                                                    <option value="<"><</option>
                                                     <option value="cross_over">Cross Over</option>
                                                     <option value="Cross Below">Cross Below</option>
                                                 </select>
                                             </div>
+                                            <span id="span_value_condition"></span>
                                         </div>
                                         <!-- <div class="line"></div> -->
                                         <div class="col">
@@ -433,8 +434,9 @@
                                             </div>
                                             <br>
                                             <div id="test-l-5" class="content">
-                                                <input type="number" class="">
+                                                <input type="number" class="value">
                                             </div>
+                                            <span id="span_value"></span>
                                         </div>
                                         <!-- <div class="line"></div> -->
                                         <div class="col">
@@ -503,7 +505,7 @@
                             <div class="card-body color_buy">
                                 <div class="form-floating">
                                     <textarea disabled class="form-control" placeholder="BUY strategy"
-                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                        id="textareabuy" style="height: 100px"></textarea>
                                     <!-- <label for="floatingTextarea2">Comments</label> -->
                                 </div>
                                 <!-- <table class="table">
@@ -533,7 +535,7 @@
                             <div class="card-body color_sell">
                                 <div class="form-floating">
                                     <textarea disabled class="form-control" placeholder="SELL strategy"
-                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                        id="textareasell" style="height: 100px"></textarea>
                                     <!-- <label for="floatingTextarea2">Comments</label> -->
                                 </div>
                                 <!-- <table class="table">

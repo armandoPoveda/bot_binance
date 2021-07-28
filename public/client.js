@@ -80,11 +80,23 @@ function stepperNext() {
     if ($('#indicator_stepper').val() != null) {
         $('#span_value_indicator').html($('#indicator_stepper').val());
     }
+    if ($('.input_period').val() != null) {
+        $('#span_value_period').html($('.input_period').val());
+    }
+    if ($('.condition').val() != null) {
+        $('#span_value_condition').html($('.condition').val());
+    }
+    if ($('.value').val() != null) {
+        $('#span_value').html($('.value').val());
+    }
 }
 function stepperPrevious() {
     stepper1.previous();
     $('#span_value_side').html('');
     $('#span_value_indicator').html('');
+    $('#span_value_period').html('');
+    $('#span_value_condition').html('');
+    $('#span_value').html('');
 }
 
 // function showModal() {
