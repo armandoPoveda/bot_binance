@@ -1,6 +1,7 @@
 
 
 $(function () {
+    console.log('stepper.js')
     const formBtn1 = document.querySelector("#btn-1")
     const formBtnPrev2 = document.querySelector("#btn-2-prev")
     const formBtnNext2 = document.querySelector("#btn-2-next")

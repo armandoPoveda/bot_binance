@@ -69,7 +69,7 @@
   /* padding: 0.5rem 0; */
 }
 
-input[type="text"] {
+/* input[type="text"] {
   padding: 0.8rem;
   margin: auto;
   margin-top: 0.5rem;
@@ -78,7 +78,7 @@ input[type="text"] {
   border-radius: 0.5rem;
   outline: none;
   border: 1px solid #bdbdbb;
-}
+} */
 
 .form__btn {
   background: #333;
@@ -159,6 +159,7 @@ input[type="text"] {
 
 .card {
   border-radius: 12px;
+  background: transparent;
 }
 
 .min-content {
@@ -204,18 +205,19 @@ input[type="number"] {
 }
 
 #tradingview_03869 {
- overflow: scroll;
+  overflow: scroll;
 }
 
 #tradingview_03870 {
   overflow: scroll;
- }
+}
 
- main{
-  background: rgb(177,173,173);
-background: linear-gradient(90deg, rgba(177,173,173,1) 0%, rgba(203,203,203,1) 0%, rgba(255,255,255,1) 100%);
- }
+main {
+  background: rgb(177, 173, 173);
+  background: linear-gradient(90deg, rgba(177, 173, 173, 1) 0%, rgba(203, 203, 203, 1) 0%, rgba(255, 255, 255, 1) 47%);
+}
 
- .card{
-margin: 5px;;
- }
+.card {
+  margin: 5px;
+  ;
+}

@@ -8,7 +8,7 @@ var input_charts = [];
 var stepper1 = null;
 
 $(function () {
-    stepper1 = new Stepper(document.querySelector('#stepper1'));
+    // stepper1 = new Stepper(document.querySelector('#stepper1'));
 
 
     // $('#myModal').css("display", "none");
@@ -71,33 +71,61 @@ $(function () {
     //     })
 })
 
-function stepperNext() {
-    stepper1.next();
-    console.log($('.side').val());
-    if ($('.side').val() != null) {
-        $('#span_value_side').html($('.side').val());
-    }
-    if ($('#indicator_stepper').val() != null) {
-        $('#span_value_indicator').html($('#indicator_stepper').val());
-    }
-    if ($('.input_period').val() != null) {
-        $('#span_value_period').html($('.input_period').val());
-    }
-    if ($('.condition').val() != null) {
-        $('#span_value_condition').html($('.condition').val());
-    }
-    if ($('.value').val() != null) {
-        $('#span_value').html($('.value').val());
-    }
+// function stepperNext() {
+//     stepper1.next();
+//     // console.log($('.side').val());
+//     if ($('.side').val() != null) {
+//         $('#span_value_side').html($('.side').val());
+//         // $('#textareabuy').html($('.side').val());
+//     }
+//     if ($('#indicator_stepper').val() != null) {
+//         console.log($('#indicator_stepper').val())
+//         // $('#textareabuy').html($('#indicator_stepper').val());
+//         $('#span_value_indicator').html($('#indicator_stepper').val());
+//     }
+//     if ($('.input_period').val() != null) {
+//         console.log($('.input_period').val())
+//         // $('#textareabuy').html($('#indicator_stepper').val() + $('.input_period').val());
+//         $('#span_value_period').html($('.input_period').val());
+//     }
+//     if ($('.condition').val() != null) {
+//         console.log($('.condition').val())
+//         // $('#textareabuy').html($('#indicator_stepper').val() + $('.input_period').val() + $('.condition').val());
+//         $('#span_value_condition').html($('.condition').val());
+//     }
+
+//     if ($('.value').val() !== '') {
+//         console.log($('.value').val())
+//         $('#span_value').html($('.value').val());
+//         $('.finished').html('Finished!!!');
+//     }
+
+   
+//     if($('.side').val() === 'BUY' && $('.finished').html() === 'Finished!!!'){
+//         $('#textareabuy').html($('#indicator_stepper').val() + $('.input_period').val() + $('.condition').val() + $('.value').val());
+//     } 
+//     if ($('.side').val() === 'SELL' && $('.finished').html() === 'Finished!!!') {
+//         $('#textareasell').html($('#indicator_stepper').val() + $('.input_period').val() + $('.condition').val() + $('.value').val());
+//     }
+
+//      console.log('finish: ',  $('.finished').html())
+//     if($('.finished').html() === 'Finished!!!'){
+//         console.log('show modal other indicator');
+//         $('#exampleModal').modal('show');
+//     }
+// }
+
+function modalHide() {
+    $('#exampleModal').modal('hide');
 }
-function stepperPrevious() {
-    stepper1.previous();
-    $('#span_value_side').html('');
-    $('#span_value_indicator').html('');
-    $('#span_value_period').html('');
-    $('#span_value_condition').html('');
-    $('#span_value').html('');
-}
+// function stepperPrevious() {
+//     $('.finished').empty();
+//     $('#span_value').empty();
+//     stepper1.previous();
+//     // $('#span_value_indicator').html('');
+//     // $('#span_value_period').html('');
+//     // $('#span_value_condition').html('');
+// }
 
 // function showModal() {
 //     console.log('show Modal')

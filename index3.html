@@ -1,581 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-  <title>ScalpingTrading</title>
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" /> -->
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-  <meta charset="UTF-8" />
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge;" /> -->
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-    integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script> -->
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-
-  <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
-    integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
-    crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <!-- <script src="/socket.io/socket.io.js"></script> -->
-  <script src="client.js"></script>
-  <link rel="stylesheet" href="css/bs-stepper.min.css">
-  <script src="js/bs-stepper.min.js"></script>
-  <script src="js/side_bar.js"></script>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/side_bar.css">
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_dots.min.css" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
+    <link rel="stylesheet" href="css/style_multi_step.css">
+    <script src="js/multi_step.js"></script>
 </head>
 
 <body>
-  <div class="page-wrapper chiller-theme toggled">
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-      <i class="fas fa-bars"></i>
-    </a>
-    <nav id="sidebar" class="sidebar-wrapper">
-      <div class="sidebar-content">
-        <div class="sidebar-brand">
-          <a href="#">pro sidebar</a>
-          <div id="close-sidebar">
-            <i class="fas fa-times"></i>
-          </div>
-        </div>
-        <div class="sidebar-header">
-          <div class="user-pic">
-            <img class="img-responsive img-rounded"
-              src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-              alt="User picture">
-          </div>
-          <div class="user-info">
-            <span class="user-name">Jhon
-              <strong>Smith</strong>
-            </span>
-            <span class="user-role">Administrator</span>
-            <span class="user-status">
-              <i class="fa fa-circle"></i>
-              <span>Online</span>
-            </span>
-          </div>
-        </div>
-        <!-- sidebar-header  -->
-        <div class="sidebar-search">
-          <div>
-            <div class="input-group">
-              <input type="text" class="form-control search-menu" placeholder="Search...">
-              <div class="input-group-append">
-                <span class="input-group-text">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- sidebar-search  -->
-        <div class="sidebar-menu">
-          <ul>
-            <li class="header-menu">
-              <span>General</span>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-                <span class="badge badge-pill badge-warning">New</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Dashboard 1
-                      <span class="badge badge-pill badge-success">Pro</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">Dashboard 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Dashboard 3</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-shopping-cart"></i>
-                <span>E-commerce</span>
-                <span class="badge badge-pill badge-danger">3</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Products
 
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">Orders</a>
-                  </li>
-                  <li>
-                    <a href="#">Credit cart</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="far fa-gem"></i>
-                <span>Components</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">General</a>
-                  </li>
-                  <li>
-                    <a href="#">Panels</a>
-                  </li>
-                  <li>
-                    <a href="#">Tables</a>
-                  </li>
-                  <li>
-                    <a href="#">Icons</a>
-                  </li>
-                  <li>
-                    <a href="#">Forms</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#" data-toggle="modal" data-target="#myModal">
-                <i class="fa fa-chart-line"></i>
-                <span>TradingView</span>
-              </a>
-              <!-- <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Pie chart</a>
-                </li>
-                <li>
-                  <a href="#">Line chart</a>
-                </li>
-                <li>
-                  <a href="#">Bar chart</a>
-                </li>
-                <li>
-                  <a href="#">Histogram</a>
-                </li>
-              </ul>
-            </div> -->
-            </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-globe"></i>
-                <span>Maps</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Google maps</a>
-                  </li>
-                  <li>
-                    <a href="#">Open street map</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="header-menu">
-              <span>Extra</span>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-book"></i>
-                <span>Documentation</span>
-                <span class="badge badge-pill badge-primary">Beta</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-calendar"></i>
-                <span>Calendar</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-folder"></i>
-                <span>Examples</span>
-              </a>
-            </li>
-          </ul>
+    <div class="container">
+        <div class="row d-flex justify-content-center mt-200"> <button type="button" class="btn btn-primary"
+                data-toggle="modal" data-target="#exampleModal"> Launch multistep Wizard </button> </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Smart Wizard modal</h5> <button type="button"
+                            class="close" data-dismiss="modal" aria-label="Close"> <span
+                                aria-hidden="true">&times;</span> </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="smartwizard">
+                            <ul>
+                                <li><a href="#step-1">Step 1<br /><small>Account Info</small></a></li>
+                                <li><a href="#step-2">Step 2<br /><small>Personal Info</small></a></li>
+                                <li><a href="#step-3">Step 3<br /><small>Payment Info</small></a></li>
+                                <li><a href="#step-4">Step 4<br /><small>Confirm details</small></a></li>
+                            </ul>
+                            <div>
+                                <div id="step-1">
+                                    <div class="row">
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Name" required> </div>
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Email" required> </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Password" required> </div>
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Repeat password" required> </div>
+                                    </div>
+                                </div>
+                                <div id="step-2">
+                                    <div class="row">
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Address" required> </div>
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="City" required> </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="State" required> </div>
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Country" required> </div>
+                                    </div>
+                                </div>
+                                <div id="step-3" class="">
+                                    <div class="row">
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Card Number" required> </div>
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Card Holder Name" required> </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6"> <input type="text" class="form-control" placeholder="CVV"
+                                                required> </div>
+                                        <div class="col-md-6"> <input type="text" class="form-control"
+                                                placeholder="Mobile Number" required> </div>
+                                    </div>
+                                </div>
+                                <div id="step-4" class="">
+                                    <div class="row">
+                                        <div class="col-md-12"> <span>Thanks For submitting your details with
+                                                BBBootstrap.com. we will send you a confirmation email. We will review
+                                                your details and revert back.</span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- sidebar-menu  -->
-      </div>
-      <!-- sidebar-content  -->
-      <div class="sidebar-footer">
-        <a href="#">
-          <i class="fa fa-bell"></i>
-          <span class="badge badge-pill badge-warning notification">3</span>
-        </a>
-        <a href="#">
-          <i class="fa fa-envelope"></i>
-          <span class="badge badge-pill badge-success notification">7</span>
-        </a>
-        <a href="#">
-          <i class="fa fa-cog"></i>
-          <span class="badge-sonar"></span>
-        </a>
-        <a href="#">
-          <i class="fa fa-power-off"></i>
-        </a>
-      </div>
-    </nav>
-    <main class="page-content">
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="card text-center shadow-lg">
-              <div class="card-header">
-                API
-              </div>
-              <div class="card-body">
-                <input type="password" placeholder="API KEY">
-                <br>
-                <br>
-                <input type="password" placeholder="API SECRET">
-              </div>
-              <div class="card-footer text-muted">
-                <a href="#" class="btn btn-info test_conecction">Test connection</a>
-              </div>
-            </div>
-            <div class="card text-center shadow-lg">
-              <div class="card-header">
-                Wallet
-              </div>
-              <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Balance</th>
-                      <th scope="col">Amount</th>
-                      <!-- <th scope="col">Select</th> -->
-                    </tr>
-                  </thead>
-                  <tbody class="tbody_balance">
-                    <!-- <tr>
-                              <th>BTC</th>
-                              <td>5</td>
-                              <td><input type="number" name="" id=""></td>
-                              <td><input type="radio" name="" id=""></td>
-                          </tr>
-                          <tr>
-                              <th>ETH</th>
-                              <td>15</td>
-                              <td><input type="number" name="" id=""></td>
-                              <td><input type="radio" name="" id=""></td>
-                          </tr>
-                          <tr>
-                              <th>BNB</th>
-                              <td>100</td>
-                              <td><input type="number" name="" id=""></td>
-                              <td><input type="radio" name="" id=""></td>
-                          </tr> -->
-                    <tr>
-                      <th>USDT</th>
-                      <td>1500</td>
-                      <td><input type="number" name="" id=""></td>
-                      <!-- <td><input type="radio" name="" id=""></td> -->
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="form-ext-control form-ext-checkbox">
-                  <input id="check-amount" class="form-ext-input form-ext-input--success" type="checkbox" />
-                  <label class="form-ext-label" for="check-amount">Always same Amount</label>
-                </div>
-                <div class="form-ext-control form-ext-checkbox">
-                  <input id="check-candle" class="form-ext-input form-ext-input--success" type="checkbox" />
-                  <label class="form-ext-label" for="check-candle">Wait finished candle</label>
-                </div>
-              </div>
-              <div class="card-footer text-muted">
-                <input onclick="saveConfiguration()" type="submit" value="save" class="btn btn-info">
-              </div>
-            </div>
-            <div class="card text-center shadow-lg">
-              <div class="card-header">
-                TradingView
-              </div>
-              <div class="card-body">
-                <div id="tradingview_03870">
-                  <script type="text/javascript">
-                    new TradingView.widget(
-                      {
-                        "width": 500,
-                        "height": 450,
-                        "symbol": "BINANCE:BTCUSDT",
-                        "interval": "D",
-                        "timezone": "Etc/UTC",
-                        "theme": "light",
-                        "style": "1",
-                        "locale": "es",
-                        "toolbar_bg": "#f1f3f6",
-                        "enable_publishing": false,
-                        "allow_symbol_change": true,
-                        "studies": [
-                          "RSI@tv-basicstudies"
-                        ],
-                        "container_id": "tradingview_03870"
-                      }
-                    );
-                  </script>
-                </div>
-              </div>
-              <div class="card-footer text-muted">
-              </div>
-            </div>
-            <div class="card text-center shadow-lg">
-              <div class="card-header color_sell">
-                SELL strategy
-              </div>
-              <div class="card-body">
-                <div class="form-floating">
-                  <textarea disabled class="form-control" placeholder="SELL strategy" id="floatingTextarea2"
-                    style="height: 100px"></textarea>
-                  <label for="floatingTextarea2">Comments</label>
-                </div>
-                <!-- <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Indicator</th>
-                                            <th>Condition</th>
-                                            <th>Value</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="tbody_value_strategy_sell">
-
-                                    </tbody>
-                                </table> -->
-              </div>
-              <div class="card-footer text-muted color_sell">
-                <!-- <a href="#" class="btn btn-success">Test connection</a> -->
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card text-center shadow-lg">
-              <div class="card-header">
-                Configuration
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm input-control">
-                    <select name="markets" class="select markets">
-                      <option selected disabled>Markets</option>
-                    </select>
-                  </div>
-                  <div class="col-sm input-control">
-                    <select name="time_frame" class="select time_frame">
-                      <option selected disabled>Time Frame</option>
-                    </select>
-                  </div>
-                  <div class="col-sm input-control">
-                    <select name="markets" class="select">
-                      <option selected disabled>Order</option>
-                      <option value="limit">Limit</option>
-                      <option value="market">Market</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-muted">
-                <input onclick="saveConfiguration()" type="submit" value="save" class="btn btn-info">
-              </div>
-            </div>
-            <div class="card text-center shadow-lg">
-              <div class="card-header">
-                Create your Strategy
-              </div>
-              <div class="card-body">
-                <div id="stepper1" class="bs-stepper">
-                  <!-- <div class="bs-stepper-header"> -->
-                  <div class="row">
-                    <div class="col">
-                      <div class="step" data-target="#test-l-1">
-                        <!-- <button type="button" class="btn step-trigger"> -->
-                        <span class="step-trigger bs-stepper-circle">1</span>
-                        <span class="bs-stepper-label">Side</span>
-                        <!-- </button> -->
-                      </div>
-                      <br>
-                      <div id="test-l-1" class="content">
-                        <select class="form-select form-select-lg mb-3 side" aria-label=".form-select-lg example">
-                          <option selected disabled>Side</option>
-                          <option id="side_buy" value="BUY">Buy</option>
-                          <option value="SELL">Sell</option>
-                        </select>
-                      </div>
-                      <span id="span_value_side" style="color: green;"></span>
-                    </div>
-                    <!-- <div class="line"></div> -->
-                    <div class="col">
-                      <div class="step" data-target="#test-l-2">
-                        <!-- <button type="button" class="btn step-trigger"> -->
-                        <span class="btn step-trigger bs-stepper-circle">2</span>
-                        <span class="bs-stepper-label">Indicator</span>
-                        <!-- </button> -->
-                      </div>
-                      <br>
-                      <div id="test-l-2" class="content">
-                        <select id="indicator_stepper" class="form-select form-select-lg mb-3 indicators"
-                          aria-label=".form-select-lg example">
-                          <option selected disabled>Indicators</option>
-                        </select>
-                      </div>
-                      <span id="span_value_indicator"></span>
-                    </div>
-                    <!-- <div class="line"></div> -->
-                    <div class="col">
-                      <div class="step" data-target="#test-l-3">
-                        <!-- <button type="button" class="btn step-trigger"> -->
-                        <span class="btn step-trigger bs-stepper-circle">3</span>
-                        <span class="bs-stepper-label">Period</span>
-                        </button>
-                      </div>
-                      <br>
-                      <div id="test-l-3" class="content">
-                        <input type="number" class="">
-                      </div>
-                    </div>
-                  </div>
-                  <br>
-                  <div class="row">
-                    <!-- <div class="line"></div> -->
-                    <div class="col">
-                      <div class="step" data-target="#test-l-4">
-                        <!-- <button type="button" class="btn step-trigger"> -->
-                        <span class="btn step-trigger bs-stepper-circle">4</span>
-                        <span class="bs-stepper-label">Condition</span>
-                        <!-- </button> -->
-                      </div>
-                      <br>
-                      <div id="test-l-4" class="content">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                          <option selected disabled>Condition</option>
-                          <option value=">">></option>
-                          <option value="<">
-                            << /option>
-                          <option value="cross_over">Cross Over</option>
-                          <option value="Cross Below">Cross Below</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- <div class="line"></div> -->
-                    <div class="col">
-                      <div class="step" data-target="#test-l-5">
-                        <!-- <button type="button" class="btn step-trigger"> -->
-                        <span class="btn step-trigger bs-stepper-circle">5</span>
-                        <span class="bs-stepper-label">Value</span>
-                        <!-- </button> -->
-                      </div>
-                      <br>
-                      <div id="test-l-5" class="content">
-                        <input type="number" class="">
-                      </div>
-                    </div>
-                    <!-- <div class="line"></div> -->
-                    <div class="col">
-                      <div class="step" data-target="#test-l-6">
-                        <!-- <button type="button" class="btn step-trigger"> -->
-                        <span class="btn step-trigger bs-stepper-circle">6</span>
-                        <span class="bs-stepper-label">Finish</span>
-                        </button>
-                      </div>
-                      <br>
-                      <div id="test-l-6" class="content">
-                        <p class="text-center color_buy_text">Finished!!!</p>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- </div> -->
-                  <!-- <div class="bs-stepper-content"> -->
-
-                  <!-- </div> -->
-                </div>
-              </div>
-              <div class="card-footer text-muted">
-                <button class="btn btn-info" onclick="stepperPrevious()">Previous</button>
-                <button class="btn btn-info" onclick="stepperNext()">Next</button>
-              </div>
-            </div>
-            <div class="card text-center shadow-lg">
-              <div class="card-header color_buy">
-                BUY strategy
-              </div>
-              <div class="card-body">
-                <div class="form-floating">
-                  <textarea disabled class="form-control" placeholder="BUY strategy" id="floatingTextarea2"
-                    style="height: 100px"></textarea>
-                  <label for="floatingTextarea2">Comments</label>
-                </div>
-                <!-- <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Indicator</th>
-                            <th>Condition</th>
-                            <th>Value</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbody_value_strategy">
-
-                    </tbody>
-                </table> -->
-              </div>
-              <div class="card-footer text-muted color_buy">
-                <!-- <a href="#" class="btn btn-success">Test connection</a> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-
+    </div>
 </body>
 
 </html>
-<!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div id="tradingview_2d1bb"></div>
-  <div class="tradingview-widget-copyright"><a href="https://es.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Gráfico</span></a> por TradingView</div>
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-  <script type="text/javascript">
-  new TradingView.widget(
-  {
-  "width": 980,
-  "height": 610,
-  "symbol": "NASDAQ:AAPL",
-  "interval": "D",
-  "timezone": "Etc/UTC",
-  "theme": "light",
-  "style": "1",
-  "locale": "es",
-  "toolbar_bg": "#f1f3f6",
-  "enable_publishing": false,
-  "allow_symbol_change": true,
-  "container_id": "tradingview_2d1bb"
-}
-  );
-  </script>
-</div>
-<!-- TradingView Widget END -->

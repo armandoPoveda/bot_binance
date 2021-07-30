@@ -41,6 +41,14 @@
     <script src="js/side_bar.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/side_bar.css">
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/smart_wizard_theme_dots.min.css" rel="stylesheet"
+        type="text/css" />
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/style_multi_step.css"> -->
+    <script src="js/multi_step.js"></script>
 </head>
 
 <body>
@@ -339,144 +347,21 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
-                    <div class="col">
-                        <div class="card text-center shadow-lg">
-                            <div class="card-header">
-                                Create your Strategy
-                            </div>
-                            <div class="card-body">
-                                <div id="stepper1" class="bs-stepper">
-                                    <!-- <div class="bs-stepper-header"> -->
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="step" data-target="#test-l-1">
-                                                <!-- <button type="button" class="btn step-trigger"> -->
-                                                <span class="step-trigger bs-stepper-circle">1</span>
-                                                <span class="bs-stepper-label">Side</span>
-                                                <!-- </button> -->
-                                            </div>
-                                            <br>
-                                            <div id="test-l-1" class="content">
-                                                <select class="form-select form-select-lg mb-3 side"
-                                                    aria-label=".form-select-lg example">
-                                                    <option selected disabled>Side</option>
-                                                    <option id="side_buy" value="BUY">Buy</option>
-                                                    <option value="SELL">Sell</option>
-                                                </select>
-                                            </div>
-                                            <span id="span_value_side" style="color: green;"></span>
-                                        </div>
-                                        <!-- <div class="line"></div> -->
-                                        <div class="col">
-                                            <div class="step" data-target="#test-l-2">
-                                                <!-- <button type="button" class="btn step-trigger"> -->
-                                                <span class="btn step-trigger bs-stepper-circle">2</span>
-                                                <span class="bs-stepper-label">Indicator</span>
-                                                <!-- </button> -->
-                                            </div>
-                                            <br>
-                                            <div id="test-l-2" class="content">
-                                                <select id="indicator_stepper"
-                                                    class="form-select form-select-lg mb-3 indicators"
-                                                    aria-label=".form-select-lg example">
-                                                    <option selected disabled>Indicators</option>
-                                                </select>
-                                            </div>
-                                            <span id="span_value_indicator"></span>
-                                        </div>
-                                        <!-- <div class="line"></div> -->
-                                        <div class="col">
-                                            <div class="step" data-target="#test-l-3">
-                                                <!-- <button type="button" class="btn step-trigger"> -->
-                                                <span class="btn step-trigger bs-stepper-circle">3</span>
-                                                <span class="bs-stepper-label">Period</span>
-                                                </button>
-                                            </div>
-                                            <br>
-                                            <div id="test-l-3" class="content">
-                                                <input type="number" class="input_period">
-                                            </div>
-                                            <span id="span_value_period"></span>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <!-- <div class="line"></div> -->
-                                        <div class="col">
-                                            <div class="step" data-target="#test-l-4">
-                                                <!-- <button type="button" class="btn step-trigger"> -->
-                                                <span class="btn step-trigger bs-stepper-circle">4</span>
-                                                <span class="bs-stepper-label">Condition</span>
-                                                <!-- </button> -->
-                                            </div>
-                                            <br>
-                                            <div id="test-l-4" class="content">
-                                                <select class="form-select form-select-lg mb-3 condition"
-                                                    aria-label=".form-select-lg example">
-                                                    <option selected disabled>Condition</option>
-                                                    <option value=">">></option>
-                                                    <option value="<"><</option>
-                                                    <option value="cross_over">Cross Over</option>
-                                                    <option value="Cross Below">Cross Below</option>
-                                                </select>
-                                            </div>
-                                            <span id="span_value_condition"></span>
-                                        </div>
-                                        <!-- <div class="line"></div> -->
-                                        <div class="col">
-                                            <div class="step" data-target="#test-l-5">
-                                                <!-- <button type="button" class="btn step-trigger"> -->
-                                                <span class="btn step-trigger bs-stepper-circle">5</span>
-                                                <span class="bs-stepper-label">Value</span>
-                                                <!-- </button> -->
-                                            </div>
-                                            <br>
-                                            <div id="test-l-5" class="content">
-                                                <input type="number" class="value">
-                                            </div>
-                                            <span id="span_value"></span>
-                                        </div>
-                                        <!-- <div class="line"></div> -->
-                                        <div class="col">
-                                            <div class="step" data-target="#test-l-6">
-                                                <!-- <button type="button" class="btn step-trigger"> -->
-                                                <span class="btn step-trigger bs-stepper-circle">6</span>
-                                                <span class="bs-stepper-label">Finish</span>
-                                                </button>
-                                            </div>
-                                            <br>
-                                            <div id="test-l-6" class="content">
-                                                <p class="text-center color_buy_text">Finished!!!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- </div> -->
-                                    <!-- <div class="bs-stepper-content"> -->
-
-                                    <!-- </div> -->
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-info" onclick="stepperPrevious()">Previous</button>
-                                <button class="btn btn-info" onclick="stepperNext()">Next</button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col">
                         <div id="tradingview_03870">
                             <!-- <a href="https://es.tradingview.com/chart/J8hnV9UB/" rel="noopener" target="_blank"><span
-                                class="blue-text">BTC Gráfico</span></a> -->
+                                    class="blue-text">BTC Gráfico</span></a> -->
                             <script type="text/javascript">
                                 new TradingView.widget(
                                     {
-                                        "width": 700,
-                                        "height": 400,
+                                        "width": '100%',
+                                        "height": 600,
                                         "symbol": "BINANCE:BTCUSDT",
                                         "interval": "D",
                                         "timezone": "Etc/UTC",
-                                        "theme": "light",
+                                        "theme": "dark",
                                         "style": "1",
                                         "locale": "es",
                                         "toolbar_bg": "#f1f3f6",
@@ -490,11 +375,11 @@
                                 );
                             </script>
                         </div>
-
                     </div>
                 </div>
             </div>
-            <!--BUY SELL strategy-->
+            <div class="row d-flex justify-content-center"> <button class="btn btn-primary btn-lg" id="modalToggle">Add
+                    Strategy</button></div>
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -504,8 +389,8 @@
                             </div>
                             <div class="card-body color_buy">
                                 <div class="form-floating">
-                                    <textarea disabled class="form-control" placeholder="BUY strategy"
-                                        id="textareabuy" style="height: 100px"></textarea>
+                                    <textarea disabled class="form-control" placeholder="BUY strategy" id="textareabuy"
+                                        style="height: 100px"></textarea>
                                     <!-- <label for="floatingTextarea2">Comments</label> -->
                                 </div>
                                 <!-- <table class="table">
@@ -596,6 +481,7 @@
             </div>
         </main>
     </div>
+    <!--Modal tradinview-->
     <div class="modal" id="myModal">
         <div style="margin-top: 2%;" class="row text-center">
             <div class="col">
@@ -624,6 +510,339 @@
                     }
                 );
             </script>
+        </div>
+    </div>
+
+    <div id="modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="wizard-title">Custom Strategy</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab">Side</a>
+                        <li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#ads" role="tab">Indicator</a>
+                        <li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#placementPanel" role="tab">Condition</a>
+                        <li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#schedulePanel" role="tab">Schedule</a>
+                        <li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#reviewPanel" role="tab">Review</a>
+                        <li>
+                    </ul>
+
+                    <div class="tab-content mt-2">
+                        <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
+                            <h4>Information</h4>
+                            <div class="form-group">
+                                <label for="campaignName">Choose Side</label>
+                                <!-- <input type="text" class="form-text" id='campaignName'></input> -->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio_buy"
+                                        checked>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Buy
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="radio_sell">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Sell
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" id="infoContinue">Continue</button>
+                        </div>
+                        <div class="tab-pane fade" id="ads" role="tabpanel">
+                            <h4>Information</h4>
+                            <label for="campaignName">Create your strategy. Examples: <br> Buy rsi14 &#60 15, Sell ema10
+                                &#60 sar <br> Buy ema10 cross over ema20 & rsi14 > 50, Sell ema10 &#60 sar </label>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="buysell" id="radio_buy"
+                                            checked>
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Buy
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="buysell" id="radio_sell">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Sell
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <select id="indicator_stepper"
+                                            class="form-select form-select-lg mb-3 indicators"
+                                            aria-label=".form-select-lg example">
+                                            <option selected disabled>Indicators</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" name="" id="" placeholder="Period">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- <div id="accordion" class="mb-3" role="tablist" aria-multiselectable="true"> -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="checkcondition" id="&#60"
+                                            checked>
+                                        <label class="form-check-label" for="&#60">
+                                            &#60
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="checkcondition" id=">">
+                                        <label class="form-check-label" for=">">
+                                            >
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="checkcondition"
+                                            id="cross_over">
+                                        <label class="form-check-label" for="cross_over">
+                                            Cross over
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="checkcondition"
+                                            id="cross_below">
+                                        <label class="form-check-label" for="cross_below">
+                                            Cross below
+                                        </label>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="valueindi" id="valuestra"
+                                            checked>
+                                        <label class="form-check-label" for="valuestra">
+                                            Value
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="valueindi"
+                                            id="checkindicator">
+                                        <label class="form-check-label" for="checkindicator">
+                                            Indicator
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <select id="indicator_stepper"
+                                            class="form-select form-select-lg mb-3 indicators"
+                                            aria-label=".form-select-lg example">
+                                            <option selected disabled>Indicators</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" name="" id="" placeholder="Period">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" name="" id="" placeholder="Value">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" id="adsContinue">Continue</button>
+                        </div>
+                        <div class="tab-pane fade" id="placementPanel" role="tabpanel">
+                            <h4>Information</h4>
+                            <label for="">Select your condition: &#60, >, cross over, cross below</label>
+                            <div id="accordion" class="mb-3" role="tablist" aria-multiselectable="true">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        &#60
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        >
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Cross over
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Cross below
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" id="placementContinue">Continue</button>
+                        </div>
+                        <div class="tab-pane fade" id="schedulePanel" role="tabpanel">
+                            <h4>Schedule</h4>
+                            <div id="scheduleAccordion" class="mb-3" role="tablist" aria-multiselectable="true">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <a data-toggle="collapse" data-parent="#scheduleAccordion"
+                                                href="#scheduleAccordioncollapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Start and Stop Date
+                                            </a>
+                                        </h5>
+                                    </div>
+
+                                    <div id="scheduleAccordioncollapseOne" class="collapse" role="tabpanel"
+                                        aria-labelledby="headingOne">
+                                        <div class="card-block">
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">Start
+                                                    Date</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="date" value="2018-01-09"
+                                                        id="start-date">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-2 col-form-label">Stop
+                                                    Date</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="date" value="2018-01-09"
+                                                        id="stop-date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#scheduleAccordion"
+                                                href="#scheduleAccordioncollapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                                Rules for Specific Days
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="scheduleAccordioncollapseTwo" class="collapse" role="tabpanel"
+                                        aria-labelledby="headingTwo">
+                                        <div class="card-block">
+                                            <h6>Play on the following days (check all that apply)</h6>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" id="sunday">
+                                                    Sunday
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" id="monday">
+                                                    Monday
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" id="tuesday">
+                                                    Tuesday
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" id="wednesday">
+                                                    Wednesday
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" id="thursday">
+                                                    Thursday
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" id="friday">
+                                                    Friday
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" id="saturday">
+                                                    Saturday
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#scheduleAccordion"
+                                                href="#scheduleAccordioncollapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                                Rules for Specific Times
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="scheduleAccordioncollapseThree" class="collapse" role="tabpanel"
+                                        aria-labelledby="headingThree">
+                                        <div class="card-block">
+                                            <h6>Play during the following timeframes (applies to each day)</h6>
+                                            <div class="form-group row">
+                                                <label for="example-time-input" class="col-2 col-form-label">Start
+                                                    Time</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="time" value="13:45:00"
+                                                        id="start-time">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="example-time-input" class="col-2 col-form-label">End
+                                                    Time</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="time" value="13:45:00"
+                                                        id="end-time">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary" id="scheduleContinue">Continue</button>
+                        </div>
+                        <div class="tab-pane fade" id="reviewPanel" role="tabpanel">
+                            <h4>Review</h4>
+                            <button class="btn btn-primary btn-block" id="activate">Activate this Campaign!</button>
+                        </div>
+                    </div>
+                    <!-- <div class="progress mt-5">
+                        <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100">Step 1 of 5</div>
+                    </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <!-- <button type="button" class="btn btn-primary">Save for later</button> -->
+                </div>
+            </div>
         </div>
     </div>
 </body>
